@@ -21,6 +21,20 @@ $messages['qqq'] = array(
 	'campaigns-desc' => '{{desc|name=Campaigns|url=https://www.mediawiki.org/wiki/Extension:Campaigns}}',
 );
 
+/** Asturian (asturianu)
+ * @author Xuacu
+ */
+$messages['ast'] = array(
+	'campaigns-desc' => 'Establez una cookie de sesión en rempuesta a ciertes URLs.',
+);
+
+/** Bikol Central (Bikol Central)
+ * @author Geopoet
+ */
+$messages['bcl'] = array(
+	'campaigns-desc' => 'Nagkakaag nin sesyon kokie na kasimbagan sa mga siyertong URLs.',
+);
+
 /** German (Deutsch)
  * @author Metalhead64
  */
@@ -47,6 +61,20 @@ $messages['gl'] = array(
  */
 $messages['ja'] = array(
 	'campaigns-desc' => '特定の URL の応答についてセッション Cookie を設定する',
+);
+
+/** Luxembourgish (Lëtzebuergesch)
+ * @author Robby
+ */
+$messages['lb'] = array(
+	'campaigns-desc' => "Setzt e Session-Cookie als Äntwert op verschidden URL'en.",
+);
+
+/** Macedonian (македонски)
+ * @author Bjankuloski06
+ */
+$messages['mk'] = array(
+	'campaigns-desc' => 'Поставува сесиско колаче како одговор на извесни URL-адреси.',
 );
 
 /** tarandíne (tarandíne)

@@ -84,6 +84,13 @@ $messages['roa-tara'] = array(
 	'campaigns-desc' => "'Mboste 'nu cookie de sessione pe responnere a certe URL.",
 );
 
+/** Vietnamese (Tiếng Việt)
+ * @author Minh Nguyen
+ */
+$messages['vi'] = array(
+	'campaigns-desc' => 'Đặt một cookie lưu cho phiên làm việc khi một số URL được truy cập',
+);
+
 /** Traditional Chinese (中文（繁體）‎)
  * @author Justincheng12345
  */

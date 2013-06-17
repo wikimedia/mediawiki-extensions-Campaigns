@@ -56,6 +56,13 @@ $messages['gl'] = array(
 	'campaigns-desc' => 'Establece unha cookie de sesión en resposta a certos enderezos URL',
 );
 
+/** Italian (italiano)
+ * @author Beta16
+ */
+$messages['it'] = array(
+	'campaigns-desc' => 'Imposta un cookie di sessione in risposta a determinati URL.',
+);
+
 /** Japanese (日本語)
  * @author Shirayuki
  */

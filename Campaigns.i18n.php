@@ -35,6 +35,13 @@ $messages['bcl'] = array(
 	'campaigns-desc' => 'Nagkakaag nin sesyon kokie na kasimbagan sa mga siyertong URLs.',
 );
 
+/** Bengali (বাংলা)
+ * @author Nasir8891
+ */
+$messages['bn'] = array(
+	'campaigns-desc' => 'একটি নির্দিষ্ট ইউআরএলের বিপরীতে সেশন কুকি নির্ধারণ করুন।',
+);
+
 /** German (Deutsch)
  * @author Metalhead64
  */

@@ -121,3 +121,20 @@ $wgHooks['AddNewAccount'][] = function( $user, $byEmail ) {
 	efLogServerSideEvent( 'ServerSideAccountCreation', 5487345, $event );
 	return true;
 };
+
+/**
+ * Adds campaign param to link on login form.
+ *
+ * @param &$template template instance for the form
+ * @return bool True
+ */
+$wgHooks['UserLoginForm'][] = function( &$template ) {
+	if ( $template->haveData( 'createOrLoginHref' ) ) {
+		$url = $template->data[ 'createOrLoginHref' ];
+		$url .=  strpos( $url, '?' ) ? '&' : '?';
+		$url .= 'campaign=loginCTA';
+		$template->set( 'createOrLoginHref', $url );
+	}
+
+	return true;
+};

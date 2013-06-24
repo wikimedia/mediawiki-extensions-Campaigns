@@ -35,6 +35,13 @@ $messages['bcl'] = array(
 	'campaigns-desc' => 'Nagkakaag nin sesyon kokie na kasimbagan sa mga siyertong URLs.',
 );
 
+/** Belarusian (Taraškievica orthography) (беларуская (тарашкевіца)‎)
+ * @author Wizardist
+ */
+$messages['be-tarask'] = array(
+	'campaigns-desc' => 'Дадае ідэнтыфікатар сэсіі ў кукі пры запыце пэўных URL.',
+);
+
 /** Bengali (বাংলা)
  * @author Nasir8891
  */
@@ -89,6 +96,13 @@ $messages['lb'] = array(
  */
 $messages['mk'] = array(
 	'campaigns-desc' => 'Поставува сесиско колаче како одговор на извесни URL-адреси.',
+);
+
+/** Malay (Bahasa Melayu)
+ * @author Anakmalaysia
+ */
+$messages['ms'] = array(
+	'campaigns-desc' => "Menetapkan ''cookie'' sesi sebagai respons kepada URL tertentu.",
 );
 
 /** tarandíne (tarandíne)

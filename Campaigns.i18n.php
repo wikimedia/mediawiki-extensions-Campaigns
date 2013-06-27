@@ -11,7 +11,7 @@ $messages = array();
  * @author S Page
  */
 $messages['en'] = array(
-	'campaigns-desc' => 'Sets a session cookie in response to certain URLs.',
+	'campaigns-desc' => 'Identifies the campaign leading to an account creation.',
 );
 
 /** Message documentation (Message documentation)

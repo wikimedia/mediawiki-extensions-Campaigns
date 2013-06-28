@@ -39,7 +39,7 @@ $messages['bcl'] = array(
  * @author Wizardist
  */
 $messages['be-tarask'] = array(
-	'campaigns-desc' => 'Дадае ідэнтыфікатар сэсіі ў кукі пры запыце пэўных URL.',
+	'campaigns-desc' => 'Дадае ідэнтыфікатар сэсіі ў кукі пры запыце пэўных URL.', # Fuzzy
 );
 
 /** Bengali (বাংলা)
@@ -53,21 +53,21 @@ $messages['bn'] = array(
  * @author Metalhead64
  */
 $messages['de'] = array(
-	'campaigns-desc' => 'Setzt ein Sitzungscookie als Antwort bestimmter URLs.',
+	'campaigns-desc' => 'Ermöglicht die Identifizierung der Kampagne, die auf eine Benutzerkontenerstellung führt',
 );
 
 /** French (français)
  * @author Gomoko
  */
 $messages['fr'] = array(
-	'campaigns-desc' => 'Définit un cookie de session en réponse à certaines URLs',
+	'campaigns-desc' => 'Identifie la campagne amenant à une création de compte.',
 );
 
 /** Galician (galego)
  * @author Toliño
  */
 $messages['gl'] = array(
-	'campaigns-desc' => 'Establece unha cookie de sesión en resposta a certos enderezos URL',
+	'campaigns-desc' => 'Identifica a campaña que leva á creación dunha conta.',
 );
 
 /** Italian (italiano)
@@ -102,7 +102,7 @@ $messages['mk'] = array(
  * @author Anakmalaysia
  */
 $messages['ms'] = array(
-	'campaigns-desc' => "Menetapkan ''cookie'' sesi sebagai respons kepada URL tertentu.",
+	'campaigns-desc' => 'Mengenal pasti kempen yang membawa kepada pembukaan akaun.',
 );
 
 /** tarandíne (tarandíne)

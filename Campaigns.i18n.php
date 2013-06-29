@@ -72,16 +72,17 @@ $messages['gl'] = array(
 
 /** Italian (italiano)
  * @author Beta16
+ * @author Gianfranco
  */
 $messages['it'] = array(
-	'campaigns-desc' => 'Imposta un cookie di sessione in risposta a determinati URL.',
+	'campaigns-desc' => 'Identifica la campagna che porta alla creazione di un account.',
 );
 
 /** Japanese (日本語)
  * @author Shirayuki
  */
 $messages['ja'] = array(
-	'campaigns-desc' => '特定の URL の応答についてセッション Cookie を設定する',
+	'campaigns-desc' => 'アカウント作成に至るキャンペーンを識別する',
 );
 
 /** Luxembourgish (Lëtzebuergesch)
@@ -95,7 +96,7 @@ $messages['lb'] = array(
  * @author Bjankuloski06
  */
 $messages['mk'] = array(
-	'campaigns-desc' => 'Поставува сесиско колаче како одговор на извесни URL-адреси.',
+	'campaigns-desc' => 'Овозможува приказ на кампањата која довела до создавање на сметката.',
 );
 
 /** Malay (Bahasa Melayu)

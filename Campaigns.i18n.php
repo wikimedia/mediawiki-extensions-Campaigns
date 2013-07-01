@@ -32,7 +32,7 @@ $messages['ast'] = array(
  * @author Geopoet
  */
 $messages['bcl'] = array(
-	'campaigns-desc' => 'Nagkakaag nin sesyon kokie na kasimbagan sa mga siyertong URLs.',
+	'campaigns-desc' => 'Minabisto sa kampanya na minatukdo pasiring sa sarong pagmumukna nin panindog.',
 );
 
 /** Belarusian (Taraškievica orthography) (беларуская (тарашкевіца)‎)
@@ -75,7 +75,7 @@ $messages['gl'] = array(
  * @author Gianfranco
  */
 $messages['it'] = array(
-	'campaigns-desc' => 'Identifica la campagna che porta alla creazione di un account.',
+	'campaigns-desc' => "Identifica la campagna che porta alla creazione di un'utenza.",
 );
 
 /** Japanese (日本語)
@@ -104,6 +104,13 @@ $messages['mk'] = array(
  */
 $messages['ms'] = array(
 	'campaigns-desc' => 'Mengenal pasti kempen yang membawa kepada pembukaan akaun.',
+);
+
+/** Dutch (Nederlands)
+ * @author Siebrand
+ */
+$messages['nl'] = array(
+	'campaigns-desc' => 'Identificeert de campagne die tot registratie heeft geleid',
 );
 
 /** tarandíne (tarandíne)

@@ -129,7 +129,8 @@ $messages['vi'] = array(
 
 /** Traditional Chinese (中文（繁體）‎)
  * @author Justincheng12345
+ * @author StephDC
  */
 $messages['zh-hant'] = array(
-	'campaigns-desc' => '對特定網址設置會話Cookie',
+	'campaigns-desc' => '標識導致帳戶創建的行爲',
 );

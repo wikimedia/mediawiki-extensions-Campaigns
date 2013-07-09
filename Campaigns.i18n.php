@@ -124,7 +124,7 @@ $messages['roa-tara'] = array(
  * @author Minh Nguyen
  */
 $messages['vi'] = array(
-	'campaigns-desc' => 'Đặt một cookie lưu cho phiên làm việc khi một số URL được truy cập',
+	'campaigns-desc' => 'Xác định chiến dịch thuyết phục người dùng mở tài khoản.',
 );
 
 /** Traditional Chinese (中文（繁體）‎)

@@ -11,7 +11,7 @@ $messages = array();
  * @author S Page
  */
 $messages['en'] = array(
-	'campaigns-desc' => 'Identifies the campaign leading to an account creation.',
+	'campaigns-desc' => 'Identifies the campaign leading to an account creation',
 );
 
 /** Message documentation (Message documentation)

@@ -56,6 +56,13 @@ $messages['de'] = array(
 	'campaigns-desc' => 'Ermöglicht die Identifizierung der Kampagne, die auf eine Benutzerkontenerstellung führt',
 );
 
+/** Persian (فارسی)
+ * @author Reza1615
+ */
+$messages['fa'] = array(
+	'campaigns-desc' => 'شناسایی کمپین منجر به ایجاد حساب کاربری.',
+);
+
 /** French (français)
  * @author Gomoko
  */

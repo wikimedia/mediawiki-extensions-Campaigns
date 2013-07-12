@@ -124,7 +124,7 @@ $messages['nl'] = array(
  * @author Joetaras
  */
 $messages['roa-tara'] = array(
-	'campaigns-desc' => "'Mboste 'nu cookie de sessione pe responnere a certe URL.",
+	'campaigns-desc' => "Idendifiche 'a gestione de 'na cambagne a 'a ccrejazione de 'nu cunde.",
 );
 
 /** Vietnamese (Tiếng Việt)

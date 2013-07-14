@@ -56,6 +56,13 @@ $messages['de'] = array(
 	'campaigns-desc' => 'Ermöglicht die Identifizierung der Kampagne, die auf eine Benutzerkontenerstellung führt',
 );
 
+/** Spanish (español)
+ * @author Luis Felipe Schenone
+ */
+$messages['es'] = array(
+	'campaigns-desc' => 'Identifica la campaña para la creación de una cuenta',
+);
+
 /** Persian (فارسی)
  * @author Reza1615
  */

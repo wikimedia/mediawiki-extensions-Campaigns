@@ -99,6 +99,13 @@ $messages['ja'] = array(
 	'campaigns-desc' => 'アカウント作成に至るキャンペーンを識別する',
 );
 
+/** Korean (한국어)
+ * @author 아라
+ */
+$messages['ko'] = array(
+	'campaigns-desc' => '계정 만들기를 이끄는 캠페인을 식별합니다',
+);
+
 /** Luxembourgish (Lëtzebuergesch)
  * @author Robby
  */
@@ -132,6 +139,20 @@ $messages['nl'] = array(
  */
 $messages['roa-tara'] = array(
 	'campaigns-desc' => "Idendifiche 'a gestione de 'na cambagne a 'a ccrejazione de 'nu cunde.",
+);
+
+/** Swedish (svenska)
+ * @author Ainali
+ */
+$messages['sv'] = array(
+	'campaigns-desc' => 'Identifierar den kampanj som leder till att ett konto skapas',
+);
+
+/** Ukrainian (українська)
+ * @author Ата
+ */
+$messages['uk'] = array(
+	'campaigns-desc' => 'Визначає кампанію, що призводить до створення облікового запису',
 );
 
 /** Vietnamese (Tiếng Việt)

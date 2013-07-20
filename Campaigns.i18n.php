@@ -84,6 +84,13 @@ $messages['gl'] = array(
 	'campaigns-desc' => 'Identifica a campaña que leva á creación dunha conta.',
 );
 
+/** Hebrew (עברית)
+ * @author Amire80
+ */
+$messages['he'] = array(
+	'campaigns-desc' => 'מזהה את מסע הפרסום שמוביל ליצירת חשבון',
+);
+
 /** Italian (italiano)
  * @author Beta16
  * @author Gianfranco

@@ -91,6 +91,13 @@ $messages['he'] = array(
 	'campaigns-desc' => 'מזהה את מסע הפרסום שמוביל ליצירת חשבון',
 );
 
+/** Iloko (Ilokano)
+ * @author Lam-ang
+ */
+$messages['ilo'] = array(
+	'campaigns-desc' => 'Manginagan ti kampania a nakaiturongan ti pannakapartuta ti pakabilangan',
+);
+
 /** Italian (italiano)
  * @author Beta16
  * @author Gianfranco

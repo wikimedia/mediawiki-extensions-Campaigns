@@ -176,6 +176,13 @@ $messages['vi'] = array(
 	'campaigns-desc' => 'Xác định chiến dịch thuyết phục người dùng mở tài khoản.',
 );
 
+/** Simplified Chinese (中文（简体）‎)
+ * @author Qiyue2001
+ */
+$messages['zh-hans'] = array(
+	'campaigns-desc' => '标识导致帐户创建的行为',
+);
+
 /** Traditional Chinese (中文（繁體）‎)
  * @author Justincheng12345
  * @author StephDC

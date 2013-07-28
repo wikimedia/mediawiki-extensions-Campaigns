@@ -91,6 +91,13 @@ $messages['he'] = array(
 	'campaigns-desc' => 'מזהה את מסע הפרסום שמוביל ליצירת חשבון',
 );
 
+/** Interlingua (interlingua)
+ * @author McDutchie
+ */
+$messages['ia'] = array(
+	'campaigns-desc' => 'Identifica le campania resultante in le creation de un conto',
+);
+
 /** Iloko (Ilokano)
  * @author Lam-ang
  */

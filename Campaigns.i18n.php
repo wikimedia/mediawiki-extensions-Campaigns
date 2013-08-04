@@ -25,7 +25,7 @@ $messages['qqq'] = array(
  * @author Xuacu
  */
 $messages['ast'] = array(
-	'campaigns-desc' => 'Establez una cookie de sesión en rempuesta a ciertes URLs.',
+	'campaigns-desc' => 'Identifica la campaña que lleva a crear una cuenta.',
 );
 
 /** Bikol Central (Bikol Central)

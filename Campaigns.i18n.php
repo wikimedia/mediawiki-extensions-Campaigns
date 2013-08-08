@@ -141,6 +141,13 @@ $messages['mk'] = array(
 	'campaigns-desc' => 'Овозможува приказ на кампањата која довела до создавање на сметката.',
 );
 
+/** Malayalam (മലയാളം)
+ * @author Praveenp
+ */
+$messages['ml'] = array(
+	'campaigns-desc' => 'അംഗത്വസൃഷ്ടിയിലേയ്ക്ക് നയിക്കുന്ന ഒരു മേളയെ തിരിച്ചറിയാൻ ഉപയോഗിക്കുന്നു',
+);
+
 /** Malay (Bahasa Melayu)
  * @author Anakmalaysia
  */

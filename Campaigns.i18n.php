@@ -16,9 +16,10 @@ $messages['en'] = array(
 
 /** Message documentation (Message documentation)
  * @author S Page
+ * @author Shirayuki
  */
 $messages['qqq'] = array(
-	'campaigns-desc' => '{{desc|name=Campaigns|url=https://www.mediawiki.org/wiki/Extension:Campaigns}}',
+	'campaigns-desc' => '{{desc|name=Campaigns|url=http://www.mediawiki.org/wiki/Extension:Campaigns}}',
 );
 
 /** Asturian (asturianu)

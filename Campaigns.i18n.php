@@ -40,7 +40,7 @@ $messages['bcl'] = array(
  * @author Wizardist
  */
 $messages['be-tarask'] = array(
-	'campaigns-desc' => 'Дадае ідэнтыфікатар сэсіі ў кукі пры запыце пэўных URL.', # Fuzzy
+	'campaigns-desc' => 'Вызначае кампанію, якая прыводзіць да стварэньня рахунку',
 );
 
 /** Bengali (বাংলা)
@@ -175,6 +175,13 @@ $messages['roa-tara'] = array(
  */
 $messages['sv'] = array(
 	'campaigns-desc' => 'Identifierar den kampanj som leder till att ett konto skapas',
+);
+
+/** Tagalog (Tagalog)
+ * @author Sky Harbor
+ */
+$messages['tl'] = array(
+	'campaigns-desc' => 'Ipinapakilala ang kampanya tungo sa paglikha ng kuwenta',
 );
 
 /** Ukrainian (українська)

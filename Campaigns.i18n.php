@@ -163,6 +163,13 @@ $messages['nl'] = array(
 	'campaigns-desc' => 'Identificeert de campagne die tot registratie heeft geleid',
 );
 
+/** Occitan (occitan)
+ * @author Cedric31
+ */
+$messages['oc'] = array(
+	'campaigns-desc' => 'Identifica la campanha que mena a una creacion de compte.',
+);
+
 /** tarandíne (tarandíne)
  * @author Joetaras
  */

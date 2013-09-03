@@ -14,7 +14,7 @@
 		return;
 	}
 
-	if ( !mw.user.isAnon() ) {
+	if ( mw.config.get( 'wgUserName' ) !== null ) {
 		mw.log.warn( 'User is logged-in, why did server load me?' );
 		return;
 	}

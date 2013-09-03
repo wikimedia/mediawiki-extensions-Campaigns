@@ -31,9 +31,9 @@ $wgResourceModules['ext.campaigns'] = array(
 	'localBasePath' => __DIR__ . '/modules',
 	'remoteExtPath' => 'Campaigns/modules',
 	'dependencies'  => array(
-		'mediawiki.user',
 		'jquery.cookie',
-	)
+	),
+	'targets' => array( 'mobile', 'desktop' ),
 );
 
 

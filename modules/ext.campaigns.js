@@ -14,6 +14,7 @@
 		return;
 	}
 
+	// Note this reimplements mw.user.isAnon(), avoiding module dependency for mobile.
 	if ( mw.config.get( 'wgUserName' ) !== null ) {
 		mw.log.warn( 'User is logged-in, why did server load me?' );
 		return;

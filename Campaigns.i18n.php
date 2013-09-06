@@ -50,6 +50,13 @@ $messages['bn'] = array(
 	'campaigns-desc' => 'একটি নির্দিষ্ট ইউআরএলের বিপরীতে সেশন কুকি নির্ধারণ করুন।',
 );
 
+/** Welsh (Cymraeg)
+ * @author Lloffiwr
+ */
+$messages['cy'] = array(
+	'campaigns-desc' => "Yn nodi'r ymgyrch a arweiniodd at agor rhyw gyfrif",
+);
+
 /** German (Deutsch)
  * @author Metalhead64
  */
@@ -168,6 +175,20 @@ $messages['nl'] = array(
  */
 $messages['oc'] = array(
 	'campaigns-desc' => 'Identifica la campanha que mena a una creacion de compte.',
+);
+
+/** Portuguese (português)
+ * @author Cainamarques
+ */
+$messages['pt'] = array(
+	'campaigns-desc' => 'Identifica a campanha que levou a criação de uma conta',
+);
+
+/** Brazilian Portuguese (português do Brasil)
+ * @author Cainamarques
+ */
+$messages['pt-br'] = array(
+	'campaigns-desc' => 'Identifica a campanha que levou a criação de uma conta',
 );
 
 /** tarandíne (tarandíne)

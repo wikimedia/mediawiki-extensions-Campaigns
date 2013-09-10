@@ -50,6 +50,13 @@ $messages['bn'] = array(
 	'campaigns-desc' => 'একটি নির্দিষ্ট ইউআরএলের বিপরীতে সেশন কুকি নির্ধারণ করুন।',
 );
 
+/** Czech (česky)
+ * @author Mormegil
+ */
+$messages['cs'] = array(
+	'campaigns-desc' => 'Identifikuje kampaň, která vedla k vytvoření účtu',
+);
+
 /** Welsh (Cymraeg)
  * @author Lloffiwr
  */

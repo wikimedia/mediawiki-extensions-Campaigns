@@ -146,7 +146,7 @@ $messages['ko'] = array(
  * @author Robby
  */
 $messages['lb'] = array(
-	'campaigns-desc' => "Setzt e Session-Cookie als Äntwert op verschidden URL'en.",
+	'campaigns-desc' => "Identifizéiert d'Campagnen déi zum Uleeë vu Benotzerkonte féieren",
 );
 
 /** Macedonian (македонски)

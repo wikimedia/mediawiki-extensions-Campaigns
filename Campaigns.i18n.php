@@ -64,6 +64,13 @@ $messages['cy'] = array(
 	'campaigns-desc' => "Yn nodi'r ymgyrch a arweiniodd at agor rhyw gyfrif",
 );
 
+/** Danish (dansk)
+ * @author Christian List
+ */
+$messages['da'] = array(
+	'campaigns-desc' => 'Identificerer kampagnen der førte til en kontooprettelse',
+);
+
 /** German (Deutsch)
  * @author Metalhead64
  */

@@ -212,6 +212,13 @@ $messages['roa-tara'] = array(
 	'campaigns-desc' => "Idendifiche 'a gestione de 'na cambagne a 'a ccrejazione de 'nu cunde.",
 );
 
+/** Russian (русский)
+ * @author Okras
+ */
+$messages['ru'] = array(
+	'campaigns-desc' => 'Определяет кампании, ведущие к созданию учётной записи',
+);
+
 /** Swedish (svenska)
  * @author Ainali
  */

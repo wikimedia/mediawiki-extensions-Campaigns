@@ -22,6 +22,13 @@ $messages['qqq'] = array(
 	'campaigns-desc' => '{{desc|name=Campaigns|url=http://www.mediawiki.org/wiki/Extension:Campaigns}}',
 );
 
+/** Aragonese (aragonés)
+ * @author Juanpabl
+ */
+$messages['an'] = array(
+	'campaigns-desc' => 'Identifica a campanya que te leva a creyar una cuenta',
+);
+
 /** Asturian (asturianu)
  * @author Xuacu
  */

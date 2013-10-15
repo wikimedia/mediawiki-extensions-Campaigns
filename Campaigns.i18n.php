@@ -198,6 +198,13 @@ $messages['oc'] = array(
 	'campaigns-desc' => 'Identifica la campanha que mena a una creacion de compte.',
 );
 
+/** Piedmontese (Piemontèis)
+ * @author Borichèt
+ */
+$messages['pms'] = array(
+	'campaigns-desc' => "A dsern la campagna ch'a men-a a na creassion ëd cont",
+);
+
 /** Portuguese (português)
  * @author Cainamarques
  */

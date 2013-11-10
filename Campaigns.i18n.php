@@ -54,7 +54,7 @@ $messages['be-tarask'] = array(
  * @author Nasir8891
  */
 $messages['bn'] = array(
-	'campaigns-desc' => 'একটি নির্দিষ্ট ইউআরএলের বিপরীতে সেশন কুকি নির্ধারণ করুন।', # Fuzzy
+	'campaigns-desc' => 'অ্যাকাউন্ট তৈরী ক্যাম্পেইন চিহ্নিত করে',
 );
 
 /** Czech (česky)

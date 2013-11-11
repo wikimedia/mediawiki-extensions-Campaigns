@@ -106,6 +106,13 @@ $messages['fr'] = array(
 	'campaigns-desc' => 'Identifie la campagne amenant à une création de compte.',
 );
 
+/** Northern Frisian (Nordfriisk)
+ * @author Murma174
+ */
+$messages['frr'] = array(
+	'campaigns-desc' => "Diarmä woort en kampanje käänd, diar tu't iinrachten faan en brükerkonto feert.",
+);
+
 /** Galician (galego)
  * @author Toliño
  */

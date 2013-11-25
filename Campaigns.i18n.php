@@ -127,6 +127,13 @@ $messages['he'] = array(
 	'campaigns-desc' => 'מזהה את מסע הפרסום שמוביל ליצירת חשבון',
 );
 
+/** Upper Sorbian (hornjoserbsce)
+ * @author Michawiki
+ */
+$messages['hsb'] = array(
+	'campaigns-desc' => 'Identifikuje kampanju, kotraž k załoženju konta wjedźe',
+);
+
 /** Interlingua (interlingua)
  * @author McDutchie
  */

@@ -85,6 +85,13 @@ $messages['de'] = array(
 	'campaigns-desc' => 'Ermöglicht die Identifizierung der Kampagne, die auf eine Benutzerkontenerstellung führt',
 );
 
+/** Lower Sorbian (dolnoserbski)
+ * @author Michawiki
+ */
+$messages['dsb'] = array(
+	'campaigns-desc' => 'Identificěrujo kampanju, kótaraž wjeźo k załoženjeju konta',
+);
+
 /** Spanish (español)
  * @author Luis Felipe Schenone
  */

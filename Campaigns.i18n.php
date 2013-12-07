@@ -57,7 +57,7 @@ $messages['bn'] = array(
 	'campaigns-desc' => 'অ্যাকাউন্ট তৈরী ক্যাম্পেইন চিহ্নিত করে',
 );
 
-/** Czech (česky)
+/** Czech (čeština)
  * @author Mormegil
  */
 $messages['cs'] = array(

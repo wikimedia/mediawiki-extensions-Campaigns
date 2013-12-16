@@ -268,6 +268,13 @@ $messages['tl'] = array(
 	'campaigns-desc' => 'Ipinapakilala ang kampanya tungo sa paglikha ng kuwenta',
 );
 
+/** Turkish (Türkçe)
+ * @author Joseph
+ */
+$messages['tr'] = array(
+	'campaigns-desc' => 'Bir hesap oluşturmaya yönlendiren kampanyayı tanımlar',
+);
+
 /** Ukrainian (українська)
  * @author Ата
  */

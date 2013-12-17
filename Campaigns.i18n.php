@@ -79,10 +79,11 @@ $messages['da'] = array(
 );
 
 /** German (Deutsch)
+ * @author Kghbln
  * @author Metalhead64
  */
 $messages['de'] = array(
-	'campaigns-desc' => 'Ermöglicht die Identifizierung der Kampagne, die auf eine Benutzerkontenerstellung führt',
+	'campaigns-desc' => 'Ermöglicht die Identifizierung der Kampagne, die zur Benutzerregistrierung führte',
 );
 
 /** Lower Sorbian (dolnoserbski)

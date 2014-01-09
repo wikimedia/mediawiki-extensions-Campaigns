@@ -185,6 +185,13 @@ $messages['lb'] = array(
 	'campaigns-desc' => "Identifizéiert d'Campagnen déi zum Uleeë vu Benotzerkonte féieren",
 );
 
+/** لوری (لوری)
+ * @author Mogoeilor
+ */
+$messages['lrc'] = array(
+	'campaigns-desc' => 'روشت ره دیاری کردن سی راس بیئن حساو نه بفئمید',
+);
+
 /** Macedonian (македонски)
  * @author Bjankuloski06
  */

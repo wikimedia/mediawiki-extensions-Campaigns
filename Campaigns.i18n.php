@@ -57,6 +57,13 @@ $messages['bn'] = array(
 	'campaigns-desc' => 'অ্যাকাউন্ট তৈরী ক্যাম্পেইন চিহ্নিত করে',
 );
 
+/** Chechen (нохчийн)
+ * @author Умар
+ */
+$messages['ce'] = array(
+	'campaigns-desc' => 'Декъашхойн дӀаяздарш кхолла лелош йолу кампанеш билгал йо',
+);
+
 /** Czech (čeština)
  * @author Mormegil
  */

@@ -29,6 +29,13 @@ $messages['an'] = array(
 	'campaigns-desc' => 'Identifica a campanya que te leva a creyar una cuenta',
 );
 
+/** Arabic (العربية)
+ * @author Asaifm
+ */
+$messages['ar'] = array(
+	'campaigns-desc' => 'تحدد الحملة التي تؤدي إلى إنشاء حساب',
+);
+
 /** Asturian (asturianu)
  * @author Xuacu
  */

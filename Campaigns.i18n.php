@@ -276,6 +276,13 @@ $messages['ru'] = array(
 	'campaigns-desc' => 'Определяет кампании, ведущие к созданию учётной записи',
 );
 
+/** Scots (Scots)
+ * @author John Reid
+ */
+$messages['sco'] = array(
+	'campaigns-desc' => 'Identifies the campaign leading til aen accoont creation',
+);
+
 /** Swedish (svenska)
  * @author Ainali
  */

@@ -29,6 +29,7 @@ $wgExtensionMessagesFiles['Campaigns'] = $dir . '/Campaigns.i18n.php';
 // Autoload
 
 $wgAutoloadClasses['Campaigns\Hooks'] = $dir . '/Campaigns.hooks.php';
+$wgAutoloadClasses['Campaigns\Setup\Setup'] = $dir . '/includes/setup/Setup.php';
 
 
 // Hooks

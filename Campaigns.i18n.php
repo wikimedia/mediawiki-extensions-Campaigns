@@ -280,7 +280,7 @@ $messages['ru'] = array(
  * @author John Reid
  */
 $messages['sco'] = array(
-	'campaigns-desc' => 'Identifies the campaign leading til aen accoont creation',
+	'campaigns-desc' => 'Identifies the campaign leadin til aen accoont cræftin',
 );
 
 /** Swedish (svenska)

@@ -70,6 +70,14 @@ $wgAutoloadClasses['Campaigns\Persistence\Internal\FieldOption']  = $dir . '/inc
 $wgAutoloadClasses['Campaigns\Persistence\Internal\Db\DBPersistenceManager']  = $dir . '/includes/persistence/internal/db/DBPersistenceManager.php';
 $wgAutoloadClasses['Campaigns\Persistence\Internal\Db\DBMapper']  = $dir . '/includes/persistence/internal/db/DBMapper.php';
 $wgAutoloadClasses['Campaigns\Persistence\Internal\Db\IDBMapper']  = $dir . '/includes/persistence/internal/db/IDBMapper.php';
+$wgAutoloadClasses['Campaigns\Api\ApiAllCampaigns'] = $dir . '/includes/api/ApiAllCampaigns.php';
+$wgAutoloadClasses['Campaigns\Api\ApiCampaignParticipants'] = $dir . '/includes/api/ApiCampaignParticipants.php';
+
+
+// API modules
+
+$wgAPIListModules['allcampaigns'] = 'Campaigns\Api\ApiAllCampaigns';
+$wgAPIListModules['campaignparticipants'] = 'Campaigns\Api\ApiCampaignParticipants';
 
 $wgAutoloadClasses['Campaigns\Services\ICampaignFromUrlKeyProvider']  = $dir . '/includes/services/ICampaignFromUrlKeyProvider.php';
 $wgAutoloadClasses['Campaigns\Services\CampaignFromUrlKeyProvider']  = $dir . '/includes/services/CampaignFromUrlKeyProvider.php';

@@ -2,10 +2,37 @@
 
 namespace Campaigns;
 
+use \DatabaseUpdater;
+
 /**
  * Static methods for hooks.
  */
 class Hooks {
+
+	/**
+	 * Update database schema to add Campaigns tables.
+	 *
+	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/LoadExtensionSchemaUpdates
+	 *
+	 * @param DatabaseUpdater $updater
+	 * @return bool
+	 */
+	public static function onLoadExtensionSchemaUpdate( DatabaseUpdater $updater ) {
+
+		$sqlDir = __DIR__ . '/sql';
+
+		$updater->addExtensionTable(
+			'campaigns_campaign',
+			$sqlDir . '/CampaignsCampaignTable.sql'
+		);
+
+		$updater->addExtensionTable(
+			'campaigns_participation',
+			$sqlDir . '/CampaignsParticipationTable.sql'
+		);
+
+		return true;
+	}
 
 	/**
 	 * If there's a ?campaign=someName in the query string and the user is not

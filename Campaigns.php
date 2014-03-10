@@ -37,6 +37,7 @@ $wgAutoloadClasses['Campaigns\Setup\Setup'] = $dir . '/includes/setup/Setup.php'
 $wgHooks['UserCreateForm'][] = 'Campaigns\Hooks::onUserCreateForm';
 $wgHooks['AddNewAccount'][] = 'Campaigns\Hooks::onAddNewAccount';
 $wgHooks['UserLoginForm'][] = 'Campaigns\Hooks::onUserLoginForm';
+$wgHooks['LoadExtensionSchemaUpdates'][] = 'Campaigns\Hooks::onLoadExtensionSchemaUpdate';
 
 
 // Modules

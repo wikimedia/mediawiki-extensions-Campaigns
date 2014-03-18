@@ -71,6 +71,11 @@ $wgAutoloadClasses['Campaigns\Persistence\Internal\Db\DBPersistenceManager']  = 
 $wgAutoloadClasses['Campaigns\Persistence\Internal\Db\DBMapper']  = $dir . '/includes/persistence/internal/db/DBMapper.php';
 $wgAutoloadClasses['Campaigns\Persistence\Internal\Db\IDBMapper']  = $dir . '/includes/persistence/internal/db/IDBMapper.php';
 
+$wgAutoloadClasses['Campaigns\Services\ICampaignFromUrlKeyProvider']  = $dir . '/includes/services/ICampaignFromUrlKeyProvider.php';
+$wgAutoloadClasses['Campaigns\Services\CampaignFromUrlKeyProvider']  = $dir . '/includes/services/CampaignFromUrlKeyProvider.php';
+$wgAutoloadClasses['Campaigns\Services\IParticipantSetter']  = $dir . '/includes/services/IParticipantSetter.php';
+$wgAutoloadClasses['Campaigns\Services\ParticipantSetter']  = $dir . '/includes/services/ParticipantSetter.php';
+
 $wgAutoloadClasses['Campaigns\PHPUnit\TestHelper']  = $dir . '/tests/phpunit/TestHelper.php';
 
 
@@ -126,6 +131,16 @@ $wgCampaignsDI['Campaigns\Persistence\IPersistenceManager'] = array(
 
 $wgCampaignsDI['Campaigns\Persistence\Internal\Db\IDBMapper'] = array(
 	'realization' => 'Campaigns\Persistence\Internal\Db\DBMapper',
+);
+
+$wgCampaignsDI['Campaigns\Services\ICampaignFromUrlKeyProvider'] = array(
+	'realization' => 'Campaigns\Services\CampaignFromUrlKeyProvider',
+	'scope'       => 'singleton'
+);
+
+$wgCampaignsDI['Campaigns\Services\IParticipantSetter'] = array(
+	'realization' => 'Campaigns\Services\ParticipantSetter',
+	'scope'       => 'singleton'
 );
 
 

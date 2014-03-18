@@ -5,6 +5,7 @@ namespace Campaigns;
 use \DatabaseUpdater;
 use \RecursiveDirectoryIterator;
 use \RecursiveIteratorIterator;
+use \Campaigns\Setup\Setup;
 
 /**
  * Static methods for hooks.
@@ -55,8 +56,11 @@ class Hooks {
 		$skin = $template->getSkin();
 
 		$request = $skin->getRequest();
-		$campaign = $request->getVal( 'campaign', '' );
-		if ( $campaign === '' || strlen( $campaign ) > $maxCampaignLen ) {
+		$campaignUrlKey = $request->getVal( 'campaign', '' );
+
+		if ( $campaignUrlKey === '' ||
+			strlen( $campaignUrlKey ) > $maxCampaignLen ) {
+
 			return true;
 		}
 
@@ -66,8 +70,16 @@ class Hooks {
 			return true;
 		};
 
+		// Get the campaign, or if necessary, create a new one
+		$setup = Setup::getInstance();
+
+		$campaignProvider =
+			$setup->get( 'Campaigns\Services\ICampaignFromUrlKeyProvider' );
+
+		$campaign = $campaignProvider->getOrCreateCampaign( $campaignUrlKey );
+
 		$out = $skin->getOutput();
-		$out->addJsConfigVars( 'wgCampaignsCampaign', $campaign );
+		$out->addJsConfigVars( 'wgCampaignsCampaign', $campaignUrlKey );
 		$out->addModules( 'ext.campaigns' );
 
 		return true;
@@ -95,12 +107,15 @@ class Hooks {
 		$displayMobile = class_exists( 'MobileContext' ) &&
 			MobileContext::singleton()->shouldDisplayMobileView();
 
+		$campaignUrlKey =
+			$wgRequest->getCookie( '-campaign', $wgCookiePrefix, '' );
+
 		$event = array(
 			'token' => $wgRequest->getCookie( 'mediaWiki.user.id', '', '' ),
 			'userId' => $userId,
 			'userName' => $user->getName(),
 			'isSelfMade' => $isSelfMade,
-			'campaign' =>  $wgRequest->getCookie( '-campaign', $wgCookiePrefix, '' ),
+			'campaign' => $campaignUrlKey,
 			'userBuckets' => $wgRequest->getCookie( 'userbuckets', '', '' ),
 			'displayMobile' => $displayMobile,
 		);
@@ -116,6 +131,12 @@ class Hooks {
 		}
 
 		efLogServerSideEvent( 'ServerSideAccountCreation', 5487345, $event );
+
+		// Persist the user's membership in a campaign
+		$setup = Setup::getInstance();
+		$pSetter = $setup->get( 'Campaigns\Services\IParticipantSetter' );
+		$pSetter->setParticipant( $campaignUrlKey, $userId, false );
+
 		return true;
 	}
 

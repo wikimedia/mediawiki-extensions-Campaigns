@@ -12,7 +12,7 @@
 $wgExtensionCredits['other'][] = array(
 	'path' => __FILE__,
 	'name' => 'Campaigns',
-	'version' => '0.1.0',
+	'version' => '0.2.0',
 	'url' => 'https://www.mediawiki.org/wiki/Extension:Campaigns',
 	'author' => 'S Page',
 	'descriptionmsg' => 'campaigns-desc',
@@ -20,7 +20,7 @@ $wgExtensionCredits['other'][] = array(
 
 
 // Messages
-
+$wgMessagesDirs['Campaigns'] = __DIR__ . '/i18n';
 $wgExtensionMessagesFiles['Campaigns'] = __DIR__ . '/Campaigns.i18n.php';
 
 

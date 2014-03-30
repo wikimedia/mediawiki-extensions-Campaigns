@@ -7,20 +7,17 @@ CREATE TABLE IF NOT EXISTS /*_*/campaigns_campaign (
 	-- Time the campaign was created
 	campaign_time_created varbinary(14) NOT NULL,
 
+	-- Time the campaign ended
+	campaign_time_ended varbinary(14),
+
 	-- A string to identify the campaign in URLs
-	campaign_url_id varchar(255) NOT NULL UNIQUE,
+	campaign_url_key varchar(255) NOT NULL UNIQUE,
 
 	-- Name of the campaign
 	campaign_name varchar(255) NOT NULL UNIQUE,
 
-	-- ID of a page about the campaign, foreign key on page.page_id
-	campaign_wikipage_id int unsigned,
-
-	-- Flag to use only event logging to record participations in this campaign
-	-- (i.e., just log via server-side when an account is created with the
-	-- campaign's URL ID in the URL)
-	-- Note that MySQL has no native boolean type, it's just a synonym for this
-	campaign_only_event_logging tinyint(1) NOT NULL default false
+	-- String title of the campaign's home page on this wiki
+	campaign_home_page_title_text varchar(255)
 
 ) /*$wgDBTableOptions*/;
 
@@ -29,7 +26,7 @@ CREATE UNIQUE INDEX /*i*/campaigns_campaign_id ON
 	/*_*/campaigns_campaign (campaign_id);
 
 CREATE UNIQUE INDEX /*i*/campaigns_campaign_url_id ON
-	/*_*/campaigns_campaign (campaign_url_id);
+	/*_*/campaigns_campaign (campaign_url_key);
 
 CREATE UNIQUE INDEX /*i*/campaigns_campaign_name ON
 	/*_*/campaigns_campaign (campaign_name);

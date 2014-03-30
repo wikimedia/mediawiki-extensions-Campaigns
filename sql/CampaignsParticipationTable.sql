@@ -13,11 +13,8 @@ CREATE TABLE IF NOT EXISTS /*_*/campaigns_participation (
 	-- Time the user joined the campaign
 	participation_time_joined varbinary(14) NOT NULL,
 
-	-- Time the user left the campaign
-	participation_time_left varbinary(14),
-
 	-- Flag for campaign organizers
-	participation_organizer boolean NOT NULL default false
+	participation_organizer boolean NOT NULL
 
 ) /*$wgDBTableOptions*/;
 
@@ -31,8 +28,10 @@ CREATE INDEX /*i*/campaigns_participation_user_id ON
 CREATE INDEX /*i*/campaigns_participation_camp_id ON
 	/*_*/campaigns_participation (participation_campaign_id);
 
-CREATE INDEX /*i*/campaigns_participation_time_left ON
-	/*_*/campaigns_participation (participation_time_left);
-
 CREATE INDEX /*i*/campaigns_participation_organizer ON
 	/*_*/campaigns_participation (participation_organizer);
+
+-- This index helps us avoid locking reads when setting a participation
+CREATE UNIQUE INDEX /*i*/campaigns_participation_user_campaign ON
+	/*_*/campaigns_participation (participation_user_id,
+	participation_campaign_id);

@@ -52,3 +52,8 @@ $wgResourceModules['ext.campaigns'] = array(
 	),
 	'targets' => array( 'mobile', 'desktop' ),
 );
+
+
+// Dependency injection setup
+
+$wgCampaignsDI = array();

@@ -3,15 +3,23 @@
 namespace Campaigns\PHPUnit\Setup;
 
 use \Campaigns\Setup\Setup;
+use \ReflectionClass;
 
 class SetupTest extends \MediaWikiTestCase {
 
+	protected function setUp() {
+
+		parent::setUp();
+
+		$this->clearOutGlobalWgCampaignsDI();
+	}
+
 	/**
-	 * Provides a Setup instance for test
+	 * Returns a Setup instance with some registrations used in several tests
 	 *
 	 * @return Setup
 	 */
-	public function setupProvider() {
+	protected function getSetupWithRegisrations() {
 
 		$setup = new Setup();
 
@@ -27,14 +35,13 @@ class SetupTest extends \MediaWikiTestCase {
 			'singleton'
 		);
 
-		return array( array( $setup ) );
+		return $setup;
 	}
 
-	/**
-	 * @dataProvider setupProvider
-	 */
 	public function
-		testGetProvidesObjectOfCorrectClassForClassWithNoConstructor( Setup $setup ) {
+		testGetProvidesObjectOfCorrectClassForClassWithNoConstructor() {
+
+		$setup = $this->getSetupWithRegisrations();
 
 		$obj = $setup->get( 'Campaigns\PHPUnit\Setup\IClassWithNoConstructor' );
 
@@ -42,12 +49,10 @@ class SetupTest extends \MediaWikiTestCase {
 		$this->assertInstanceOf( $implClassName, $obj );
 	}
 
-	/**
-	 * @dataProvider setupProvider
-	 */
 	public function
-		testGetProvidesObjectOfCorrectClassForClassWithAConstructorParam(
-		$setup ) {
+		testGetProvidesObjectOfCorrectClassForClassWithAConstructorParam() {
+
+		$setup = $this->getSetupWithRegisrations();
 
 		$obj = $setup->get(
 			'Campaigns\PHPUnit\Setup\IClassWithAConstructorParam' );
@@ -56,12 +61,10 @@ class SetupTest extends \MediaWikiTestCase {
 		$this->assertInstanceOf( $implClassName, $obj );
 	}
 
-	/**
-	 * @dataProvider setupProvider
-	 */
 	public function
-		testObjectOfClassWithAConstructorParamReceivesObjectOfCorrectClassInConstructor(
-		$setup ) {
+		testObjectOfClassWithAConstructorParamReceivesObjectOfCorrectClassInConstructor() {
+
+		$setup = $this->getSetupWithRegisrations();
 
 		$obj1 = $setup->get(
 			'Campaigns\PHPUnit\Setup\IClassWithAConstructorParam' );
@@ -72,11 +75,9 @@ class SetupTest extends \MediaWikiTestCase {
 		$this->assertInstanceOf( $obj2ImplClassName, $obj2 );
 	}
 
-	/**
-	 * @dataProvider setupProvider
-	 */
-	public function testInSingletonScopeGetAlwaysProvidesTheSameInstance(
-		$setup ) {
+	public function testInSingletonScopeGetAlwaysProvidesTheSameInstance() {
+
+		$setup = $this->getSetupWithRegisrations();
 
 		$obj1 = $setup->get(
 			'Campaigns\PHPUnit\Setup\IClassWithNoConstructor' );
@@ -84,17 +85,16 @@ class SetupTest extends \MediaWikiTestCase {
 		$obj2 = $setup->get(
 			'Campaigns\PHPUnit\Setup\IClassWithNoConstructor' );
 
-		$this->assertTrue( $obj1 === $obj2 );
+		$this->assertSame( $obj1, $obj2 );
 	}
 
 	/**
-	 * @dataProvider setupProvider
 	 * @expectedException \MWException
 	 * @expectedExceptionMessage No concrete class registered for
 	 */
-	public function testExceptionThrownWhenObjectOfUnregisteredTypeRequested(
-		$setup ) {
+	public function testExceptionThrownWhenObjectOfUnregisteredTypeRequested() {
 
+		$setup = $this->getSetupWithRegisrations();
 		$setup->get( 'IUnregisteredType' );
 	}
 
@@ -118,13 +118,13 @@ class SetupTest extends \MediaWikiTestCase {
 	}
 
 	/**
-	 * @dataProvider setupProvider
 	 * @expectedException \MWException
 	 * @expectedExceptionMessage is not a subclass of
 	 */
 	public function
-		testExceptionThrownWhenImplementationClassThatIsntASubclassOfTypeIsRegistered(
-		$setup ) {
+		testExceptionThrownWhenImplementationClassThatIsntASubclassOfTypeIsRegistered() {
+
+		$setup = new Setup();
 
 		$setup->register(
 			'Campaigns\PHPUnit\Setup\ISomeOtherType',
@@ -134,11 +134,13 @@ class SetupTest extends \MediaWikiTestCase {
 	}
 
 	/**
-	 * @dataProvider setupProvider
 	 * @expectedException \MWException
 	 * @expectedExceptionMessage already registered
 	 */
-	public function testExceptionThrownWhenSameTypeIsRegisteredTwice( $setup ) {
+	public function testExceptionThrownWhenSameTypeIsRegisteredTwice() {
+
+		$setup = $this->getSetupWithRegisrations();
+
 		$setup->register(
 			'Campaigns\PHPUnit\Setup\IClassWithNoConstructor',
 			'Campaigns\PHPUnit\Setup\ClassWithNoConstructor',
@@ -163,13 +165,13 @@ class SetupTest extends \MediaWikiTestCase {
 	}
 
 	/**
-	 * @dataProvider setupProvider
 	 * @expectedException \MWException
 	 * @expectedExceptionMessage with no type hint
 	 */
 	public function
-		testExceptionThrownWhenClassWithConstructorParamWithNoTypeHintRegistered(
-		$setup ) {
+		testExceptionThrownWhenClassWithConstructorParamWithNoTypeHintRegistered() {
+
+		$setup = $this->getSetupWithRegisrations();
 
 		$setup->register(
 			'Campaigns\PHPUnit\Setup\IClassWithAConstructorParamWithNoTypeHint',
@@ -178,12 +180,77 @@ class SetupTest extends \MediaWikiTestCase {
 		);
 	}
 
-	public function testStaticClearInstanceClearsGlobalInstance() {
-		$instance1 = Setup::getInstance();
-		Setup::clearInstance();
-		$instance2 = Setup::getInstance();
+	public function testTypesCanBeRegisteredFromWgcampaignsdi() {
 
-		$this->assertFalse( $instance1 === $instance2 );
+		// Set a registration in global $wgCampaignsDI
+		$this->setRegistrationInGlobalWgCampaignsDI();
+
+		$setup = new Setup();
+
+		// Register from global
+		$setup->registerTypesFromWGCampaignsDI();
+
+		// Request the type registered
+		$obj = $setup->get( 'Campaigns\PHPUnit\Setup\IClassWithNoConstructor' );
+
+		// Test that we get an instance of the correct class
+		$implClassName = 'Campaigns\PHPUnit\Setup\ClassWithNoConstructor';
+		$this->assertInstanceOf( $implClassName, $obj );
+
+		// Clean up
+		$this->clearOutGlobalWgCampaignsDI();
+	}
+
+	public function testStaticGetInstanceReturnsTheSameInstance() {
+
+		$instance1 = Setup::getInstance();
+		$instance2 = Setup::getInstance();
+		$this->assertSame( $instance1, $instance2 );
+	}
+
+	public function testStaticGetInstanceRegistersTypesFromWgcampaignsdi() {
+
+		// Clear out static instance property
+		TestSetup::clearInstance();
+
+		// Set a registration in global $wgCampaignsDI
+		$this->setRegistrationInGlobalWgCampaignsDI();
+
+		// Get our instance via static getInstance()
+		$setup = Setup::getInstance();
+
+		// Request the type registered
+		$obj = $setup->get( 'Campaigns\PHPUnit\Setup\IClassWithNoConstructor' );
+
+		// Test that we get an instance of the correct class
+		$implClassName = 'Campaigns\PHPUnit\Setup\ClassWithNoConstructor';
+		$this->assertInstanceOf( $implClassName, $obj );
+
+		// Clean up
+		$this->clearOutGlobalWgCampaignsDI();
+	}
+
+	/**
+	 * Sets up the global variable $wgCampaignsDI with a type registration
+	 */
+	private function setRegistrationInGlobalWgCampaignsDI() {
+		$this->setMwGlobals( 'wgCampaignsDI', array(
+
+			'Campaigns\PHPUnit\Setup\IClassWithNoConstructor' => array (
+
+				'realization' =>
+					'Campaigns\PHPUnit\Setup\ClassWithNoConstructor',
+
+				'scope' => 'singleton'
+			)
+		) );
+	}
+
+	/**
+	 * Clear out any registrations in global $wgCampaignsDI
+	 */
+	private function clearOutGlobalWgCampaignsDI() {
+		$this->setMwGlobals( 'wgCampaignsDI', array() );
 	}
 }
 
@@ -229,4 +296,14 @@ class ClassWithAConstructorParamWithNoTypeHint
 	implements IClassWithAConstructorParamWithNoTypeHint {
 
 	public function __construct( $value ) { }
+}
+
+/**
+ * Subclass with method for clearing out protected static property
+ */
+class TestSetup extends Setup {
+
+	public static function clearInstance() {
+		parent::$instance = null;
+	}
 }

@@ -14,9 +14,9 @@ use \ReflectionClass;
  * that type. When you call get() with the name of the type, you'll get an
  * instance of the concrete class you registered.
  *
- * If the class to instantiate has parameters in its constructor, they should be
- * type-hinted, and concrete classes to instantiate should be registered for
- * those types.
+ * If the class depends on other dependency-injected classes, specify these as
+ * type-hinted constructor parameters. Setup::get() will instantiate the
+ * concrete objects and pass them to your constructor.
  *
  * Only the 'singleton' scope is available. For types in this scope, only one
  * instance will be created.
@@ -40,30 +40,46 @@ class Setup {
 	 */
 	public static function getInstance() {
 
-		if ( is_null( static::$instance ) ){
+		// If the instance is null...
+		if ( is_null( static::$instance ) ) {
+
+			// Create a new one...
 			static::$instance = new static();
+
+			// ...and set it up using values from $wgCampaignsDI.
+			// (This allows putting setup in Camapaigns.php.)
+			static::$instance->registerTypesFromWGCampaignsDI();
 		}
 
 		return static::$instance;
 	}
 
 	/**
-	 * Clear the global Setup instance (useful for setting up tests)
+	 * Performs registrations indicated in the global variable
+	 * $wgCampaignsDI
 	 */
-	public static function clearInstance() {
-		static::$instance = null;
+	public function registerTypesFromWGCampaignsDI() {
+
+		foreach ( $GLOBALS['wgCampaignsDI'] as $key => $val ) {
+
+			$this->register(
+				$key,
+				$val['realization'],
+				$val['scope']
+			);
+		}
 	}
 
 	/**
-	 * Register a type, an implementation class, and a scope
+	 * Register a type, a realization class, and a scope
 	 * (for now, must be 'singleton').
 	 *
 	 * @param string $typeName
-	 * @param string $implClassName
+	 * @param string $realizationClassName
 	 * @param string $scope For now, must be 'singleton'
 	 * @throws MWException
 	 */
-	public function register( $typeName, $implClassName, $scope ) {
+	public function register( $typeName, $realizationClassName, $scope ) {
 
 		// Check this type hasn't already been registered
 		if ( isset( $this->registrations[$typeName] ) ) {
@@ -77,15 +93,15 @@ class Setup {
 				' for a scope other than singleton.' );
 		}
 
-		$reflClass = new ReflectionClass( $implClassName );
+		$reflClass = new ReflectionClass( $realizationClassName );
 
-		// Check that the implementation class is a subclass of the type
+		// Check that the realization class is a subclass of the type
 		if ( !$reflClass->isSubClassOf( $typeName ) ) {
-			throw new MWException( $implClassName . ' is not a subclass of ' .
-				$typeName );
+			throw new MWException( $realizationClassName .
+				' is not a subclass of ' . $typeName );
 		}
 
-		// If the implementation class has a constructor, check that all the
+		// If the realization class has a constructor, check that all the
 		// constructor params are type-hinted
 		if ( $reflClass->hasMethod( '__construct' ) ) {
 			$constructor = $reflClass->getMethod( '__construct' );
@@ -98,7 +114,7 @@ class Setup {
 				if ( is_null( $reflParam->getClass() ) ) {
 
 					throw new MWException( 'Attempted to register class ' .
-						$implClassName . ' with no type hint for the ' .
+						$realizationClassName . ' with no type hint for the ' .
 						'constructor parameter ' . $reflParam->getName() );
 				}
 			}
@@ -106,7 +122,7 @@ class Setup {
 
 		// All OK, let's register
 		$this->registrations[$typeName] =
-			new Registration( $typeName, $implClassName, $scope );
+			new Registration( $typeName, $realizationClassName, $scope );
 	}
 
 	/**
@@ -155,7 +171,7 @@ class Setup {
 	 */
 	private function instantiate( Registration $registration ) {
 
-		$reflClass = new ReflectionClass( $registration->implClassName );
+		$reflClass = new ReflectionClass( $registration->realizationClassName );
 
 		// If there's no constructor, we can just instantiate and leave
 		if ( !$reflClass->hasMethod( '__construct' ) ) {
@@ -185,12 +201,12 @@ class Setup {
  */
 class Registration {
 	public $typeName;
-	public $implClassName;
+	public $realizationClassName;
 	public $scope;
 
-	public function __construct( $typeName, $implClassName, $scope ) {
+	public function __construct( $typeName, $realizationClassName, $scope ) {
 		$this->typeName = $typeName;
-		$this->implClassName = $implClassName;
+		$this->realizationClassName = $realizationClassName;
 		$this->scope = $scope;
 	}
 }

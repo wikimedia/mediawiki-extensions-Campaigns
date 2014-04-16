@@ -1,8 +1,8 @@
 {
-    "@metadata": {
-        "authors": [
-            "Mormegil"
-        ]
-    },
-    "campaigns-desc": "Identifikuje kampaň, která vedla k vytvoření účtu"
+	"@metadata": {
+		"authors": [
+			"Mormegil"
+		]
+	},
+	"campaigns-desc": "Identifikuje kampaň, která vedla k vytvoření účtu"
 }

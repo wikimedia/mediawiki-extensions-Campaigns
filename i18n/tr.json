@@ -1,8 +1,8 @@
 {
-    "@metadata": {
-        "authors": [
-            "Joseph"
-        ]
-    },
-    "campaigns-desc": "Bir hesap oluşturmaya yönlendiren kampanyayı tanımlar"
+	"@metadata": {
+		"authors": [
+			"Joseph"
+		]
+	},
+	"campaigns-desc": "Bir hesap oluşturmaya yönlendiren kampanyayı tanımlar"
 }

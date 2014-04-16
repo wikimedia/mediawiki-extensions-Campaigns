@@ -1,8 +1,8 @@
 {
-    "@metadata": {
-        "authors": [
-            "Ainali"
-        ]
-    },
-    "campaigns-desc": "Identifierar den kampanj som leder till att ett konto skapas"
+	"@metadata": {
+		"authors": [
+			"Ainali"
+		]
+	},
+	"campaigns-desc": "Identifierar den kampanj som leder till att ett konto skapas"
 }

@@ -8,8 +8,9 @@ use ReflectionProperty;
 
 /**
  * To create some typesafe enums, just extend this class, declare some public
- * static properties, then call YourClassName::setUp(). Your subclass should be
- * final.
+ * static properties without setting thier values, then call
+ * YourClass::setUp(). Also, make your subclass final.
+ * @see ITypesafeEnum
  */
 abstract class TypesafeEnum implements ITypesafeEnum {
 
@@ -29,8 +30,7 @@ abstract class TypesafeEnum implements ITypesafeEnum {
 	protected $fullyQualifiedName;
 
 	/**
-	 * Set the values of the static properties that represent the enum.
-	 * Only needs to be called once.
+	 * @see ITypesafeEnum::setUp()
 	 */
 	public static function setUp() {
 
@@ -67,19 +67,14 @@ abstract class TypesafeEnum implements ITypesafeEnum {
 	}
 
 	/**
-	 * Get a list of declared enum values
-	 *
-	 * @return array
+	 * @see ITypesafeEnum::getValues()
 	 */
 	public static function getValues() {
 		return array_values( self::$metaByClassName[get_called_class()] );
 	}
 
 	/**
-	 * Check if an enum is declared on the called class. If a string is sent,
-	 * the value is looked up by name.
-	 *
-	 * @param TypesafeEnum|string $valOrName
+	 * @see ITypesafeEnum::isDeclared()
 	 */
 	public static function isDeclared( $valOrName ) {
 
@@ -94,9 +89,7 @@ abstract class TypesafeEnum implements ITypesafeEnum {
 	}
 
 	/**
-	 * Returns the enum value with this name, or null if it doesn't exist.
-	 *
-	 * @param string $name
+	 * @see ITypesafeEnum::getValueByName()
 	 */
 	public static function getValueByName( $name ) {
 
@@ -118,10 +111,16 @@ abstract class TypesafeEnum implements ITypesafeEnum {
 		return $this->name;
 	}
 
+	/**
+	 * @see ITypesafeEnum::getName()
+	 */
 	public function getName() {
 		return $this->name;
 	}
 
+	/**
+	 * @see ITypesafeEnum::getFullyQualifiedName()
+	 */
 	public function getFullyQualifiedName() {
 		return $this->fullyQualifiedName;
 	}

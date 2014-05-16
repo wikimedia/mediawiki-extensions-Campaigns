@@ -29,6 +29,12 @@ class SetupTest extends \MediaWikiTestCase {
 			'singleton'
 		);
 
+		$setup->register(
+			'Campaigns\PHPUnit\Setup\ClassWhereTypeAndRealizationAreTheSame',
+			'Campaigns\PHPUnit\Setup\ClassWhereTypeAndRealizationAreTheSame',
+			'singleton'
+		);
+
 		// Default scope is singleton
 		$setup->register(
 			'Campaigns\PHPUnit\Setup\IClassWithAConstructorParam',
@@ -58,6 +64,20 @@ class SetupTest extends \MediaWikiTestCase {
 			'Campaigns\PHPUnit\Setup\IClassWithAConstructorParam' );
 
 		$implClassName = 'Campaigns\PHPUnit\Setup\ClassWithAConstructorParam';
+		$this->assertInstanceOf( $implClassName, $obj );
+	}
+
+	public function
+		testGetProvidesObjectOfCorrectClassWhenTypeAndRealizationAreTheSame() {
+
+		$setup = $this->getSetupWithRegisrations();
+
+		$obj = $setup->get(
+			'Campaigns\PHPUnit\Setup\ClassWhereTypeAndRealizationAreTheSame' );
+
+		$implClassName =
+			'Campaigns\PHPUnit\Setup\ClassWhereTypeAndRealizationAreTheSame';
+
 		$this->assertInstanceOf( $implClassName, $obj );
 	}
 
@@ -140,7 +160,7 @@ class SetupTest extends \MediaWikiTestCase {
 	 * @expectedExceptionMessage is not a subclass of
 	 */
 	public function
-		testExceptionThrownWhenImplementationClassThatIsntASubclassOfTypeIsRegistered() {
+		testExceptionThrownWhenImplementationClassThatIsntASubclassOfOrTheSameAsTypeIsRegistered() {
 
 		$setup = new Setup();
 
@@ -319,6 +339,8 @@ class ClassWithAConstructorParam implements IClassWithAConstructorParam {
 		return $this->value;
 	}
 }
+
+class ClassWhereTypeAndRealizationAreTheSame { }
 
 interface IUnregisteredType { }
 

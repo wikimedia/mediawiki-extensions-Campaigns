@@ -104,10 +104,12 @@ class Setup {
 
 		$reflClass = new ReflectionClass( $realizationClassName );
 
-		// Check that the realization class is a subclass of the type
-		if ( !$reflClass->isSubClassOf( $typeName ) ) {
+		// Check that the realization class is a subclass of or the same as type
+		if ( !$reflClass->isSubClassOf( $typeName ) &&
+				$typeName !== $realizationClassName ) {
+
 			throw new MWException( $realizationClassName .
-				' is not a subclass of ' . $typeName );
+				' is not a subclass of or the same class as ' . $typeName );
 		}
 
 		// If the realization class has a constructor, check that all the

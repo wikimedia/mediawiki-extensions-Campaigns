@@ -8,8 +8,9 @@ use ReflectionProperty;
 
 /**
  * To create some typesafe enums, just extend this class, declare some public
- * static properties without setting thier values, then call
- * YourClass::setUp(). Also, make your subclass final.
+ * static properties without setting their values, then call YourClass::setUp().
+ * If you want to prevent additional enums of the same type from being created,
+ * you can make your subclass final.
  * @see ITypesafeEnum
  */
 abstract class TypesafeEnum implements ITypesafeEnum {

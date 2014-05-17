@@ -3,6 +3,8 @@
 namespace Campaigns;
 
 use \DatabaseUpdater;
+use \RecursiveDirectoryIterator;
+use \RecursiveIteratorIterator;
 
 /**
  * Static methods for hooks.
@@ -129,6 +131,22 @@ class Hooks {
 			$url .=  strpos( $url, '?' ) ? '&' : '?';
 			$url .= 'campaign=loginCTA';
 			$template->set( 'createOrLoginHref', $url );
+		}
+
+		return true;
+	}
+
+	/**
+	 * Return test suites
+	 */
+	public static function onUnitTestsList( &$files ) {
+		// Search for tests
+		$dirIterator = new RecursiveDirectoryIterator( __DIR__ . '/tests' );
+		$iterator = new RecursiveIteratorIterator( $dirIterator, RecursiveIteratorIterator::LEAVES_ONLY );
+		foreach ( $iterator as $path => $fileObject ) {
+			if ( fnmatch( "*Test.php", $fileObject->getFilename() ) ) {
+				$files[] = $path;
+			}
 		}
 
 		return true;

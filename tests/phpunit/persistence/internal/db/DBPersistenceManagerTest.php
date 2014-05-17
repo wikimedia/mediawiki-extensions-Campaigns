@@ -30,11 +30,18 @@ class DBPersistenceManagerTest extends MediaWikiTestCase {
 		// Create a table to use for test
 		$db = $this->db;
 
-		$db->query( 'CREATE TEMPORARY TABLE IF NOT EXISTS '
-			. $db->tableName( $this->table ) . ' (' .
-			'id int unsigned NOT NULL PRIMARY KEY auto_increment,' .
-			'field1 varchar(255) UNIQUE,' .
-			'field2 varchar(255) );',
+		// Temporary measure due to the lack of accommodation in core for
+		// differences in table creation options. (For WMF CI, tests must run in
+		// SQLite.)
+		// TODO Remove this if this is addressed in core.
+		$autoincrement =
+			$db->getType() === 'sqlite' ? 'autoincrement' : 'auto_increment';
+
+		$db->query( "CREATE TEMPORARY TABLE IF NOT EXISTS
+			{$db->tableName( $this->table )} (
+			id integer NOT NULL PRIMARY KEY {$autoincrement},
+			field1 varchar(255) UNIQUE,
+			field2 varchar(255) )",
 			__METHOD__ );
 
 		// TestHelper provides some convenience functionality that we use

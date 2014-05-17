@@ -36,6 +36,61 @@ class TypesafeEnumTest extends \MediaWikiTestCase {
 			AnotherTestEnum::$ENUM_THREE );
 	}
 
+	public function testSwitchOnEnum() {
+
+		$enums = array(
+			TestEnum::$ENUM_ONE,
+			TestEnum::$ENUM_TWO,
+			TestEnum::$ENUM_THREE
+		);
+
+		foreach ( $enums as $e ) {
+
+			switch ( $e ) {
+
+				case TestEnum::$ENUM_ONE:
+					$this->assertSame( TestEnum::$ENUM_ONE, $e );
+					break;
+
+				case TestEnum::$ENUM_TWO:
+					$this->assertSame( TestEnum::$ENUM_TWO, $e );
+					break;
+
+				case TestEnum::$ENUM_THREE:
+					$this->assertSame( TestEnum::$ENUM_THREE, $e );
+					break;
+
+				default:
+					$this->fail( 'Enum ' . $e . ' didn\'t follow the right path'
+						. ' in switch.');
+			}
+		}
+	}
+
+	public function testInArrayWithEnums() {
+
+		$enums = array(
+			TestEnum::$ENUM_ONE,
+			TestEnum::$ENUM_TWO
+		);
+
+		$this->assertTrue( in_array( TestEnum::$ENUM_ONE, $enums ) );
+		$this->assertTrue( in_array( TestEnum::$ENUM_TWO, $enums ) );
+		$this->assertFalse( in_array( TestEnum::$ENUM_THREE, $enums ) );
+	}
+
+	public function testArraySearchWithEnums() {
+
+		$enums = array(
+			TestEnum::$ENUM_ONE,
+			TestEnum::$ENUM_TWO
+		);
+
+		$this->assertEquals( 0, array_search( TestEnum::$ENUM_ONE, $enums ) );
+		$this->assertEquals( 1, array_search( TestEnum::$ENUM_TWO, $enums ) );
+		$this->assertFalse( array_search( TestEnum::$ENUM_THREE, $enums ) );
+	}
+
 	public function testToStringReturnsEnumName() {
 
 		$this->assertEquals( 'ENUM_ONE', TestEnum::$ENUM_ONE->__toString() );

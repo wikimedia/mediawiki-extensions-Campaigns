@@ -153,10 +153,6 @@ class TypesafeEnumTest extends \MediaWikiTestCase {
 	public function testIsDeclaredReturnsFalseWhenExpectedForString() {
 
 		$this->assertFalse( TestEnum::isDeclared( 'UNKNOWN_ENUM' ) );
-
-		// Be sure this doesn't create a false positive, since it's declared
-		// as a static property, but is protected.
-		$this->assertFalse( TestEnum::isDeclared( 'values' ) );
 	}
 
 	public function testGetValueByNameReturnsCorrectValue() {

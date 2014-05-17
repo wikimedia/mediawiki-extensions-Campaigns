@@ -62,10 +62,14 @@ class Setup {
 
 		foreach ( $GLOBALS['wgCampaignsDI'] as $key => $val ) {
 
+			// Scope is optional but this isn't the place to set its
+			// default
+			$scope = isset( $val['scope'] ) ? $val['scope'] : null;
+
 			$this->register(
 				$key,
 				$val['realization'],
-				$val['scope']
+				$scope
 			);
 		}
 	}
@@ -79,12 +83,17 @@ class Setup {
 	 * @param string $scope For now, must be 'singleton'
 	 * @throws MWException
 	 */
-	public function register( $typeName, $realizationClassName, $scope ) {
+	public function register( $typeName, $realizationClassName, $scope=null ) {
 
 		// Check this type hasn't already been registered
 		if ( isset( $this->registrations[$typeName] ) ) {
 			throw new MWException( 'Attempted to register type ' . $typeName .
 				', but it\'s already registered.' );
+		}
+
+		// Default scope is singleton
+		if ( is_null( $scope ) ) {
+			$scope = 'singleton';
 		}
 
 		// Check that the registration isn't for an unsupported scope
@@ -95,10 +104,12 @@ class Setup {
 
 		$reflClass = new ReflectionClass( $realizationClassName );
 
-		// Check that the realization class is a subclass of the type
-		if ( !$reflClass->isSubClassOf( $typeName ) ) {
+		// Check that the realization class is a subclass of or the same as type
+		if ( !$reflClass->isSubClassOf( $typeName ) &&
+				$typeName !== $realizationClassName ) {
+
 			throw new MWException( $realizationClassName .
-				' is not a subclass of ' . $typeName );
+				' is not a subclass of or the same class as ' . $typeName );
 		}
 
 		// If the realization class has a constructor, check that all the

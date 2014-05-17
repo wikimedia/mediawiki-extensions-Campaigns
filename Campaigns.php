@@ -100,37 +100,30 @@ $wgCampaignsDI = array();
 
 $wgCampaignsDI['Campaigns\Domain\ICampaignRepository'] = array(
 	'realization' => 'Campaigns\Domain\Internal\CampaignRepository',
-	'scope'       => 'singleton'
 );
 
 $wgCampaignsDI['Campaigns\Domain\IParticipationRepository'] = array(
 	'realization' => 'Campaigns\Domain\Internal\ParticipationRepository',
-	'scope'       => 'singleton'
 );
 
 $wgCampaignsDI['Campaigns\Domain\ITransactionManager'] = array(
 	'realization' => 'Campaigns\Domain\Internal\TransactionManager',
-	'scope'       => 'singleton'
 );
 
 $wgCampaignsDI['Campaigns\Domain\Internal\ICampaignFactory'] = array(
 	'realization' => 'Campaigns\Domain\Internal\CampaignFactory',
-	'scope'       => 'singleton'
 );
 
 $wgCampaignsDI['Campaigns\Domain\Internal\IParticipationFactory'] = array(
 	'realization' => 'Campaigns\Domain\Internal\ParticipationFactory',
-	'scope'       => 'singleton'
 );
 
 $wgCampaignsDI['Campaigns\Persistence\IPersistenceManager'] = array(
 	'realization' => 'Campaigns\Persistence\Internal\Db\DBPersistenceManager',
-	'scope'       => 'singleton'
 );
 
 $wgCampaignsDI['Campaigns\Persistence\Internal\Db\IDBMapper'] = array(
 	'realization' => 'Campaigns\Persistence\Internal\Db\DBMapper',
-	'scope'       => 'singleton'
 );
 
 

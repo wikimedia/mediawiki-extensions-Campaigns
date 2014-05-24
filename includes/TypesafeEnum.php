@@ -2,7 +2,6 @@
 
 namespace Campaigns;
 
-use BadFunctionCallException;
 use ReflectionClass;
 use ReflectionProperty;
 
@@ -37,6 +36,13 @@ abstract class TypesafeEnum implements ITypesafeEnum {
 
 		// Get the the class this was called on and its static properties
 		$calledClassName = get_called_class();
+
+		// If we already have info about this class, it means that setUp() was
+		// already called on it, so just return.
+		if ( isset( self::$metaByClassName[$calledClassName] ) ) {
+			return;
+		}
+
 		$calledClass = new ReflectionClass ( $calledClassName );
 		$props = $calledClass->getProperties ( ReflectionProperty::IS_STATIC );
 
@@ -48,13 +54,6 @@ abstract class TypesafeEnum implements ITypesafeEnum {
 
 			if ( !$prop->isPublic() ) {
 				continue;
-			}
-
-			if ( !is_null( $prop->getValue() ) ) {
-				throw new BadFunctionCallException(
-					'Enum setup called more than once or enum values already' .
-					' set for ' . $calledClassName . '.' );
-
 			}
 
 			$name = $prop->getName();

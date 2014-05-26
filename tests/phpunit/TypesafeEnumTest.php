@@ -4,6 +4,9 @@ namespace Campaigns\PHPUnit;
 
 use Campaigns\TypesafeEnum;
 
+/**
+ * @group Campaigns
+ */
 class TypesafeEnumTest extends \MediaWikiTestCase {
 
 	public static function setUpBeforeClass() {

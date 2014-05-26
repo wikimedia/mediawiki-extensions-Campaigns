@@ -6,6 +6,9 @@ use MediaWikiTestCase;
 use ReflectionClass;
 use Campaigns\Domain\Internal\Participation;
 
+/**
+ * @group Campaigns
+ */
 class ParticipationTest extends MediaWikiTestCase {
 
 	public function testConstructorSetsTimeJoinedToNow() {

@@ -13,6 +13,9 @@ use Campaigns\Persistence\IField;
 use Campaigns\Persistence\Operator;
 use Campaigns\Persistence\Order;
 
+/**
+ * @group Campaigns
+ */
 class ParticipationRepositoryTest extends MediaWikiTestCase {
 
 	protected $testHelper;

@@ -5,6 +5,9 @@ namespace Campaigns\PHPUnit\Setup;
 use \Campaigns\Setup\Setup;
 use \ReflectionClass;
 
+/**
+ * @group Campaigns
+ */
 class SetupTest extends \MediaWikiTestCase {
 
 	protected function setUp() {

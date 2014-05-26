@@ -5,6 +5,9 @@ namespace Campaigns\PHPUnit\Domain\Internal;
 use MediaWikiTestCase;
 use Campaigns\Domain\Internal\Campaign;
 
+/**
+ * @group Campaigns
+ */
 class CampaignTest extends MediaWikiTestCase {
 
 	public function testConstructorSetsTimeCreatedToNow() {

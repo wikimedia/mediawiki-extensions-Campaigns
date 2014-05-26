@@ -15,6 +15,7 @@ use Campaigns\Persistence\Internal\Db\UpdateOrCreateOperation;
 use Campaigns\Persistence\Internal\Db\DeleteOperation;
 
 /**
+ * @group Campaigns
  * @group Database
  */
 class DBPersistenceManagerTest extends MediaWikiTestCase {

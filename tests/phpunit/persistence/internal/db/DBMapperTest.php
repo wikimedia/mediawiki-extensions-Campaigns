@@ -10,6 +10,9 @@ use Campaigns\Persistence\Internal\FieldOption;
 use Campaigns\Persistence\Internal\FieldDatatype;
 use Campaigns\Persistence\Internal\Db\DBMapper;
 
+/**
+ * @group Campaigns
+ */
 class DBMapperTest extends MediaWikiTestCase {
 
 	protected $testNS = 'Campaigns\PHPUnit\Persistence\Internal\Db';

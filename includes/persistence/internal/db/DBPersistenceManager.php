@@ -376,85 +376,108 @@ class DBPersistenceManager implements IPersistenceManager {
 			);
 		}
 
-		// Any problems?
-		if ( $dbw->affectedRows() !== 1) {
+		// One row modified, as expected?
+		if ( $dbw->affectedRows() === 1 ) {
 
-			// First check if the problem was a duplicate value on a unique
-			// field.
-
-			// Cycle through the unique indexes and see if there was a
-			// failure due to duplicates on them
-			$uniqueIndexes = $this->mapper->getUniqueIndexes( $obj );
-
-			foreach ( $uniqueIndexes as $uniqueIndex => $uIdxFields ) {
-
-				// Make query conditions
-				$conditions = array();
-				foreach ( $uIdxFields as $uIdxField ) {
-
-					$val = $this->mapper->getFieldValue( $obj, $uIdxField );
-
-					$conditions[] = new Condition(
-						$uIdxField,
-						Operator::$EQUAL,
-						$val
-					);
-				}
-
-				$objWithSameValues = $this->getOneInternal(
-					$this->mapper->getTypeForObj( $obj ),
-					$conditions, $dbw, $tableName );
-
-				// Null means there is no such object and this index wasn't
-				// the problem. In that case we'll just continue with the loop.
-				// Otherwise perform more checks to see what to do.
-				if ( !is_null( $objWithSameValues ) ) {
-
-					// If we're doing an update rather than insert, we also
-					// check that the object with the same values isn't the
-					// same one we're updating; that would mean this index
-					// wasn't the problem.
-					if ( !$insert && ( $id  ===
-						$this->mapper->getId( $objWithSameValues ) ) ) {
-
-						continue;
-					}
-
-					if ( !is_null( $op->duplicatesCallback ) ) {
-
-						$duplicatesCallback = $op->duplicatesCallback;
-						$duplicatesCallback( $obj, $uniqueIndex );
-
-						// Nothing more to do here
-						return;
-
-					} else {
-
-						throw new MWException(
-							'Attempted to save a ' . get_class( $obj )
-							. ' with duplicate value(s) for the unique index ' .
-							$uniqueIndex . '.' );
-					}
-				}
+			// If this was an insert, set the id field on the new entity
+			if ( $insert ) {
+				$this->mapper->setIdOfNewObj( $obj, $dbw->insertId() );
 			}
 
-			// Hmmm, if we got here with no exceptions, then something else
-			// probably went wrong. However, it's also possible that there
-			// was indeed a collision on a unique field, but that the row
-			// with the duplicate value was changed right away and wasn't
-			// detected above.
-			throw new MWException( 'Couldn\'t save ' .
-				get_class( $obj ) . ' with id ' . $id . '. Reason: unknown. ' .
-				'Possibly due to an attempt to save an entity with a ' .
-				'duplicate value for a unique field that was changed ' .
-				'immediately after transaction.' );
-
-		} elseif ( $insert ) {
-
-			// If we're here, everything went fine, and we just need to set the
-			// id field on the newly persisted entity
-			$this->mapper->setIdOfNewObj( $obj, $dbw->insertId() );
+			// All done
+			return;
 		}
+
+		// The rest of this method is for when a row wasn't changed (likely
+		// due to a duplicate index value).
+
+		// Cycle through the unique indexes and see if there was a failure due
+		// to duplicates on them.
+		$uniqueIndexes = $this->mapper->getUniqueIndexes( $obj );
+
+		foreach ( $uniqueIndexes as $uniqueIndex => $uIdxFields ) {
+
+			// Make query conditions
+			$conditions = array();
+			foreach ( $uIdxFields as $uIdxField ) {
+
+				$val = $this->mapper->getFieldValue( $obj, $uIdxField );
+
+				$conditions[] = new Condition(
+					$uIdxField,
+					Operator::$EQUAL,
+					$val
+				);
+			}
+
+			// Get the object that had the same values on the unique index
+			// fields
+			$objWithSameValues = $this->getOneInternal(
+				$this->mapper->getTypeForObj( $obj ),
+				$conditions, $dbw, $tableName );
+
+			// If we got an object, perform more checks to see what to do.
+			// Otherwise just continue with the loop.
+			if ( !is_null( $objWithSameValues ) ) {
+
+				// If we're doing an update rather than insert, we have to
+				// do some extra checks.
+				if ( !$insert ) {
+
+					// One possibility is that the two objects are
+					// identical. This can happen in MySQL if you try to
+					// update a row with exactly the same values that it
+					// already had; in that case MySQL will not count it
+					// as a row that was modified. This doesn't happen with
+					// SQLite, though.
+					// TODO If entities can ever have objects as field
+					// values, this check should be modified.
+					if ( $obj == $objWithSameValues ) {
+
+						// No need to continue checking indexes here, since
+						// they'll all take us to the same result.
+						return;
+					}
+
+					// If the two objects don't have identical values, but
+					// have the same ID, then the issue must have been a
+					// different unique index, or there must have been some
+					// other problem.
+					if ( $id === $this->mapper->getId( $objWithSameValues ) ) {
+						continue;
+					}
+				}
+
+				// If we're here, it means the duplicate was on this index.
+				// If we got a callback, call it. Otherwise, throw an exception.
+				if ( !is_null( $op->duplicatesCallback ) ) {
+
+					$duplicatesCallback = $op->duplicatesCallback;
+					$duplicatesCallback( $obj, $uniqueIndex );
+
+					// Nothing more to do here
+					return;
+
+				} else {
+
+					throw new MWException(
+						'Attempted to save a ' . get_class( $obj )
+						. ' with duplicate value(s) for the unique index ' .
+						$uniqueIndex . '.' );
+				}
+			}
+		}
+
+		// Hmmm, if we got here with no exceptions, then something else
+		// probably went wrong. However, it's also possible that there
+		// was indeed a collision on a unique field, but that the row
+		// with the duplicate value was changed right away and wasn't
+		// detected above.
+		throw new MWException( 'Couldn\'t save ' .
+			get_class( $obj ) . ' with id ' . $id . '. Reason: unknown. ' .
+			'Possibly due to an attempt to save an entity with a ' .
+			'duplicate value for a unique field that was changed ' .
+			'immediately after transaction.' );
 	}
 
 	/**

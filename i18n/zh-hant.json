@@ -2,8 +2,9 @@
 	"@metadata": {
 		"authors": [
 			"Justincheng12345",
-			"StephDC"
+			"StephDC",
+			"Cwlin0416"
 		]
 	},
-	"campaigns-desc": "標識導致帳戶創建的行爲"
+	"campaigns-desc": "辨識可引起使用者建立帳號的活動"
 }

@@ -129,6 +129,20 @@ class CampaignRepository implements ICampaignRepository {
 	}
 
 	/**
+	 * @see ICampaignRepository::getCampaignByName()
+	 */
+	public function getCampaignByName( $name, $useMaster=false ) {
+
+		$condition = new Condition(
+			CampaignField::$NAME,
+			Operator::$EQUAL,
+			$name
+		);
+
+		return $this->pm->getOne( 'ICampaign', $condition, $useMaster );
+	}
+
+	/**
 	 * @see ICampaignRepository::getCampaigns()
 	 */
 	public function getCampaigns( $namePrefix=null, $fetchLimit=null, &$continueKey=null ) {

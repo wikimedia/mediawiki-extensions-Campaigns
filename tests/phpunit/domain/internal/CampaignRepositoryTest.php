@@ -247,6 +247,31 @@ class CampaignRepositoryTest extends MediaWikiTestCase {
 		);
 	}
 
+	public function testGetCampaignByName() {
+
+		$repoAndM = $this->getCampaignRepoAndMocks();
+
+		// Verifications for mock persistence manager
+		$repoAndM->pm->expects( $this->once() )
+			->method( 'getOne' )
+			->with(
+				$this->equalTo( 'ICampaign' ),
+				$this->captureArg( $condition ),
+				$this->equalTo( true ) )
+			->will( $this->returnValue( $repoAndM->c ) );
+
+		$this->assertSame( $repoAndM->c,
+			$repoAndM->cRepo->getCampaignByName( 'name', true ) );
+
+		// Test the condition
+		$this->assertCondition(
+			$condition,
+			CampaignField::$NAME,
+			Operator::$EQUAL,
+			'name'
+		);
+	}
+
 	public function testGetCampaignsWithNamePrefix() {
 
 		$repoAndM = $this->getCampaignRepoAndMocks();

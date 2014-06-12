@@ -52,7 +52,7 @@ interface ICampaignRepository {
 	public function existsCampaignWithName( $name );
 
 	/**
-	 * Ge a campaign by ID.
+	 * Get a campaign by ID.
 	 *
 	 * @param int $id
 	 * @param boolean $useMaster Set to true to query the master persistence
@@ -62,7 +62,7 @@ interface ICampaignRepository {
 	public function getCampaignById( $id, $useMaster=false );
 
 	/**
-	 * Ge a campaign by URL key.
+	 * Get a campaign by URL key.
 	 *
 	 * @param string $urlKey
 	 * @param boolean $useMaster Set to true to query the master persistence
@@ -70,6 +70,16 @@ interface ICampaignRepository {
 	 *   implementation, this forces the query to use DB_MASTER.)
 	 */
 	public function getCampaignByUrlKey( $urlKey, $useMaster=false );
+
+	/**
+	 * Get a campaign by name.
+	 *
+	 * @param string $name
+	 * @param boolean $useMaster Set to true to query the master persistence
+	 *   store, which should be up-to-date with all transactions. (In the DB
+	 *   implementation, this forces the query to use DB_MASTER.)
+	 */
+	public function getCampaignByName( $name, $useMaster=false );
 
 	/**
 	 * Get a list of campaigns. Include only campaigns whose name starts

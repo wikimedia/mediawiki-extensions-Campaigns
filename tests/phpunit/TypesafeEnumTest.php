@@ -176,20 +176,24 @@ class TypesafeEnumTest extends \MediaWikiTestCase {
 		$this->assertNull( TestEnum::getValueByName( 'values' ) );
 	}
 
-	/**
-	 * @expectedException \Exception
-	 * @expectedExceptionMessage Enum setup called more than once or enum values already set
-	 */
-	public function testExceptionThrownWhenSetupCalledMoreThanOnce() {
-		TestEnum::setUp();
-	}
+	public function testValuesDoNotChangeIfSetupIsCalledSeveralTimes() {
 
-	/**
-	 * @expectedException \Exception
-	 * @expectedExceptionMessage Enum setup called more than once or enum values already set
-	 */
-	public function testExceptionThrownWhenSetupCalledAndValuesAreAlreadySet() {
+		// This calls setUp() for the first time
 		YetAnotherTestEnum::setUp();
+
+		// Remember the values
+		$enumOneOrig = YetAnotherTestEnum::$ENUM_ONE;
+		$enumTwoOrig = YetAnotherTestEnum::$ENUM_TWO;
+		$enumThreeOrig = YetAnotherTestEnum::$ENUM_THREE;
+		$valuesOrig = YetAnotherTestEnum::getValues();
+
+		// Call setUp() again
+		YetAnotherTestEnum::setUp();
+
+		$this->assertSame( $enumOneOrig, YetAnotherTestEnum::$ENUM_ONE );
+		$this->assertSame( $enumTwoOrig, YetAnotherTestEnum::$ENUM_TWO );
+		$this->assertSame( $enumThreeOrig, YetAnotherTestEnum::$ENUM_THREE );
+		$this->assertEquals( $valuesOrig, YetAnotherTestEnum::getValues() );
 	}
 }
 
@@ -215,12 +219,12 @@ final class AnotherTestEnum extends TypesafeEnum {
 }
 
 /**
- * Yet another test enum, to test that an exception is thrown if enum values
- * are set manually.
+ * Yet another test enum, to test that setup can be called several times.
+ * Used in testValuesDoNotChangeIfSetupIsCalledSeveralTimes()
  */
 final class YetAnotherTestEnum extends TypesafeEnum {
 
-	static $ENUM_ONE = 0;    // **Wrong** Don't do this
-	static $ENUM_TWO = 1;    // **Wrong** Don't do this
-	static $ENUM_THREE = 2;  // **Wrong** Don't do this
+	static $ENUM_ONE;
+	static $ENUM_TWO;
+	static $ENUM_THREE;
 }

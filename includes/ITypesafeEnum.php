@@ -10,7 +10,7 @@ interface ITypesafeEnum {
 
 	/**
 	 * Set up the values of the static properties for the enums.
-	 * Should only be called once.
+	 * It has no effect after it's been called for the first time.
 	 *
 	 * @throws BadFunctionCallException Thrown if this method is called more than
 	 *   once or if the static properties already have values

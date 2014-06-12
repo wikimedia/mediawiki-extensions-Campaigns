@@ -329,7 +329,7 @@ class DBPersistenceManagerTest extends MediaWikiTestCase {
 
 	public function testSaveUpdatesRowOnUpdate() {
 
-		// Initial value of all columns
+		// Initial value of all fields
 		$val = 'testSaveUpdatesRowOnUpdate';
 
 		$r = $this->insertRow( $val );
@@ -357,7 +357,7 @@ class DBPersistenceManagerTest extends MediaWikiTestCase {
 
 	public function testSaveGetsIdFieldForObjOnUpdate() {
 
-		// Initial value of all columns
+		// Initial value of all fields
 		$val = 'SaveGetsIdFieldForObjOnUpdate';
 
 		$r = $this->insertRow( $val );
@@ -384,7 +384,7 @@ class DBPersistenceManagerTest extends MediaWikiTestCase {
 	public function
 		testSaveDoesNotCallDuplicatesCallbackWhenThereAreNoDuplicatesOnUpdate() {
 
-		// Initial value of all columns
+		// Initial value of all fields
 		$val =
 			'SaveDoesNotCallDuplicatesCallbackWhenThereAreNoDuplicatesOnUpdate';
 
@@ -412,7 +412,7 @@ class DBPersistenceManagerTest extends MediaWikiTestCase {
 	public function
 		testSaveCallsDuplicatesCallbackAndGetsIdWhenThereAreDuplicatesOnUpdate() {
 
-		// Initial value of all columns
+		// Initial value of all fields
 		$val = 'SaveCallsDuplicatesCallbackWhenThereAreDuplicatesOnUpdate';
 
 		// Insert two rows with different values
@@ -431,22 +431,61 @@ class DBPersistenceManagerTest extends MediaWikiTestCase {
 		// These calls are one of the things we're testing here
 		$pmAndM->mapper->expects( $this->exactly( 2 ) )
 			->method( 'getId' )
-			->with( $this->identicalTo( $pmAndM->e ) )
-			->will( $this->onConsecutiveCalls( $r1->id, $r2->id ) );
+			->will( $this->onConsecutiveCalls( $r2->id , $r1->id ) );
+
+		// We need to send in a different object than $pmAndM->e (which will
+		// be returned by mapper->makeObjectFromDbRow) and make sure
+		// that it won't evaluated as equal to $pmAndM->anotherE.
+		$pmAndM->anotherE->field1 = 'someOtherValue';
 
 		// Save the row with the duplicate values, sending duplicates callback
 		$self = $this;
 		$called = false;
-		$pmAndM->pm->queueSave( $pmAndM->e, function( $obj, $i )
-			use( $self, $pmAndM, &$called ) {
+		$pmAndM->pm->queueSave( $pmAndM->anotherE, function ( $obj, $i )
+			use ( $self, $pmAndM, &$called ) {
 
 			$called = true;
 			$self->assertEquals( 'FIELD1', $i );
-			$self->assertSame( $pmAndM->e, $obj );
+			$self->assertSame( $pmAndM->anotherE, $obj );
 		} );
 
 		$pmAndM->pm->flush();
 		$this->assertTrue( $called, 'Duplicates callback not called.' );
+	}
+
+
+	/**
+	 * Test that if a row is updated with the same values that it already had,
+	 * the duplicates callback is not called.
+	 * Note that this is potentially a problem under MySQL, which will say that
+	 * no rows were affected in that case. Since we use rows affected to detect
+	 * unique index collisions, there are special checks for this exact
+	 * situation. However it's not an issue under SQLite, because in the same
+	 * circumstances SQLite _will_ report one row affected.
+	 */
+	public function
+		testSaveDoesNotCallDuplicatesCallbackWhenUpdateMakesNoChanges() {
+
+		// Value for all fields
+		$val = 'SaveDoesNotCallDuplicatesCallbackWhenUpdateMakesNoChanges';
+		$r = $this->insertRow( $val );
+
+		$pmAndM = $this->getPersistenceManagerAndMocks();
+
+		// We'll try to update the same row with the same values
+		$rowData = $this->prepareRowData( $val );
+		$this->prepareMocks( $rowData, $pmAndM, $r->id, null, $val );
+
+		// Save the row, sending duplicates callback
+		$called = false;
+		$pmAndM->pm->queueSave( $pmAndM->e,
+			function ( $obj, $i ) use ( &$called ) {
+
+			$called = true;
+		} );
+
+		$pmAndM->pm->flush();
+		$this->assertFalse( $called, 'Duplicates callback called.' );
 	}
 
 	public function testUpdateOrCreateGetsId() {
@@ -586,7 +625,7 @@ class DBPersistenceManagerTest extends MediaWikiTestCase {
 
 	public function testUpdateOrCreateInsertsRowWhenExpected() {
 
-		// Value of all columns
+		// Value of all fields
 		$val = 'UpdateOrCreateInsertsRowWhenExpected';
 
 		$pmAndM = $this->getPersistenceManagerAndMocks();
@@ -608,7 +647,7 @@ class DBPersistenceManagerTest extends MediaWikiTestCase {
 
 	public function testUpdateOrCreateUpdatesRowWhenExpected() {
 
-		// Initial value of all columns
+		// Initial value of all fields
 		$val = 'UpdateOrCreateUpdatesRowWhenExpected';
 
 		$r = $this->insertRow( $val );
@@ -1554,6 +1593,9 @@ class DBPersistenceManagerTest extends MediaWikiTestCase {
 		$e = $this->getMock(
 			'Campaigns\PHPUnit\Persistence\Internal\Db\MockEntity' );
 
+		$anotherE = $this->getMock(
+			'Campaigns\PHPUnit\Persistence\Internal\Db\MockEntity' );
+
 		$mapper = $this->getMock(
 			'Campaigns\Persistence\Internal\Db\IDBMapper' );
 
@@ -1574,6 +1616,7 @@ class DBPersistenceManagerTest extends MediaWikiTestCase {
 
 		return (object) array(
 			'e' => $e,
+			'anotherE' => $anotherE,
 			'mapper' => $mapper,
 			'pm' => $pm,
 			'field1' => $field1,
@@ -1590,7 +1633,9 @@ class DBPersistenceManagerTest extends MediaWikiTestCase {
 	}
 }
 
-interface MockEntity { }
+class MockEntity {
+	public $field1 = 'someValue';
+}
 
 interface MockField extends IField {
 	public function getName();

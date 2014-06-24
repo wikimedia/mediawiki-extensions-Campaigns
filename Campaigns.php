@@ -118,7 +118,7 @@ $wgHooks['AddNewAccount'][] = function( $user, $byEmail ) {
 		$event[ 'returnToQuery' ] = $returnToQuery;
 	}
 
-	efLogServerSideEvent( 'ServerSideAccountCreation', 5487345, $event );
+	EventLogging::logEvent( 'ServerSideAccountCreation', 5487345, $event );
 	return true;
 };
 

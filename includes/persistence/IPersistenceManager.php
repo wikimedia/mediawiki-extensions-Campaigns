@@ -1,6 +1,7 @@
 <?php
 namespace Campaigns\Persistence;
 
+use Campaigns\ConnectionType;
 use Campaigns\Persistence\Order;
 use Campaigns\Persistence\IField;
 
@@ -117,13 +118,15 @@ interface IPersistenceManager {
 	 *
 	 * @param Condition|array $conditions A single Condition or an array of them
 	 *
-	 * @param boolean $useMaster Set to true to query the master persistence
-	 *   store, which should be up-to-date with all transactions. (In the DB
-	 *   implementation, this forces the query to use DB_MASTER.)
+	 * @param ConnectionType $connectionType Set to MASTER for data that is
+	 *   guaranteed to be the latest. Default is SLAVE, which may provide
+	 *   slightly laggy data. (In the DB implementation, these map to
+	 *   DB_MASTER and DB_SLAVE.)
 	 *
 	 * @return mixed $obj
 	 */
-	public function getOne( $type, $conditions, $useMaster=false );
+	public function getOne( $type, $conditions,
+			ConnectionType $connectionType=null );
 
 	/**
 	 * Get a single entity of this $type with this $id.
@@ -132,13 +135,15 @@ interface IPersistenceManager {
 	 *
 	 * @param mixed $id
 	 *
-	 * @param boolean $useMaster Set to true to query the master persistence
-	 *   store, which should be up-to-date with all transactions. (In the DB
-	 *   implementation, this forces the query to use DB_MASTER.)
+	 * @param ConnectionType $connectionType Set to MASTER for data that is
+	 *   guaranteed to be the latest. Default is SLAVE, which may provide
+	 *   slightly laggy data. (In the DB implementation, these map to
+	 *   DB_MASTER and DB_SLAVE.)
 	 *
 	 * @return mixed $obj
 	 */
-	public function getOneById( $type, $id, $useMaster=false );
+	public function getOneById( $type, $id,
+		ConnectionType $connectionType=null );
 
 	/**
 	 * Count the entities of this $type, identified by $conditions. If
@@ -148,13 +153,9 @@ interface IPersistenceManager {
 	 *
 	 * @param array $conditions An array of Conditions
 	 *
-	 * @param string $useMaster Set to true to query the master persistence
-	 *   store, which should be up-to-date with all transactions. (In the DB
-	 *   implementation, this forces the query to use DB_MASTER.)
-	 *
 	 * @return int
 	 */
-	public function count( $type, $conditions=null, $useMaster=false);
+	public function count( $type, $conditions=null );
 
 	/**
 	 * Get an array of entities of this $type, identified by $conditions,

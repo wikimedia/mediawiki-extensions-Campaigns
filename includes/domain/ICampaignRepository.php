@@ -2,6 +2,8 @@
 
 namespace Campaigns\Domain;
 
+use Campaigns\ConnectionType;
+
 interface ICampaignRepository {
 
 	/**
@@ -55,31 +57,36 @@ interface ICampaignRepository {
 	 * Get a campaign by ID.
 	 *
 	 * @param int $id
-	 * @param boolean $useMaster Set to true to query the master persistence
-	 *   store, which should be up-to-date with all transactions. (In the DB
-	 *   implementation, this forces the query to use DB_MASTER.)
+	 * @param ConnectionType $connectionType Set to MASTER for data that is
+	 *   guaranteed to be the latest. Default is SLAVE, which may provide
+	 *   slightly laggy data. (In the DB implementation, these map to
+	 *   DB_MASTER and DB_SLAVE.)
 	 */
-	public function getCampaignById( $id, $useMaster=false );
+	public function getCampaignById( $id, ConnectionType $connectionType=null );
 
 	/**
 	 * Get a campaign by URL key.
 	 *
 	 * @param string $urlKey
-	 * @param boolean $useMaster Set to true to query the master persistence
-	 *   store, which should be up-to-date with all transactions. (In the DB
-	 *   implementation, this forces the query to use DB_MASTER.)
+	 * @param ConnectionType $connectionType Set to MASTER for data that is
+	 *   guaranteed to be the latest. Default is SLAVE, which may provide
+	 *   slightly laggy data. (In the DB implementation, these map to
+	 *   DB_MASTER and DB_SLAVE.)
 	 */
-	public function getCampaignByUrlKey( $urlKey, $useMaster=false );
+	public function getCampaignByUrlKey( $urlKey,
+		ConnectionType $connectionType=null );
 
 	/**
 	 * Get a campaign by name.
 	 *
 	 * @param string $name
-	 * @param boolean $useMaster Set to true to query the master persistence
-	 *   store, which should be up-to-date with all transactions. (In the DB
-	 *   implementation, this forces the query to use DB_MASTER.)
+	 * @param ConnectionType $connectionType Set to MASTER for data that is
+	 *   guaranteed to be the latest. Default is SLAVE, which may provide
+	 *   slightly laggy data. (In the DB implementation, these map to
+	 *   DB_MASTER and DB_SLAVE.)
 	 */
-	public function getCampaignByName( $name, $useMaster=false );
+	public function getCampaignByName( $name,
+		ConnectionType $connectionType=null );
 
 	/**
 	 * Get a list of campaigns. Include only campaigns whose name starts
@@ -110,6 +117,26 @@ interface ICampaignRepository {
 	 */
 	public function getCampaigns( $namePrefix=null, $fetchLimit=null,
 		&$continueKey=null );
+
+	/**
+	 * Get a campaign with the provided URL key over ConnectionType::$MASTER.
+	 * If one does not exist, create one with a name similar to $suggestedName.
+	 * If a campaign is created, it will be automatically persisted; it is not
+	 * necessary to call ITranscationManager::flush().
+	 *
+	 * The purpose of this method is to guarantee a Campaign with this URL key.
+	 *
+	 * @param string $urlKey
+	 * @param string $suggestedName
+	 * @param int $maxAttempts The maximum number of times to attempt to create
+	 *   a campaign with a name similar to $suggestedName. It is unlikely that
+	 *   several attempts will ever be needed.
+	 *
+	 * @throws MWException In the very unlikely event that it was not possible
+	 *   to ensure a campaign with this URL key.
+	 */
+	public function getOrCreateCampaignEnsureUrlKey( $urlKey, $suggestedName,
+		$maxAttempts );
 
 	/**
 	 * The maximum number of campaigns that may be retrieved at once using

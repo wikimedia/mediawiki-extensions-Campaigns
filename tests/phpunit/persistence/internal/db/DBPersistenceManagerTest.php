@@ -3,6 +3,7 @@
 namespace Campaigns\PHPUnit\Persistence\Internal\Db;
 
 use MediaWikiTestCase;
+use Campaigns\ConnectionType;
 use Campaigns\PHPUnit\TestHelper;
 use Campaigns\TypesafeEnum;
 use Campaigns\Persistence\IField;
@@ -87,7 +88,7 @@ class DBPersistenceManagerTest extends MediaWikiTestCase {
 		// This is the call that we're testing
 		$pmAndM->pm->expects( $this->once() )
 			->method( 'getDb' )
-			->with( $this->equalTo( true ) ) // requesting master
+			->with( $this->equalTo( ConnectionType::$MASTER ) )
 			->will( $this->returnValue( $this->db ) );
 
 		// Queue and perform the save
@@ -562,7 +563,7 @@ class DBPersistenceManagerTest extends MediaWikiTestCase {
 		// This is the call that we're testing
 		$pmAndM->pm->expects( $this->once() )
 			->method( 'getDb' )
-			->with( $this->equalTo( true ) ) // requesting master
+			->with( $this->equalTo( ConnectionType::$MASTER ) )
 			->will( $this->returnValue( $this->db ) );
 
 		// Queue and perform the update-or-create
@@ -697,7 +698,7 @@ class DBPersistenceManagerTest extends MediaWikiTestCase {
 		// This is the call that we're testing
 		$pmAndM->pm->expects( $this->once() )
 			->method( 'getDb' )
-			->with( $this->equalTo( true ) ) // requesting master
+			->with( $this->equalTo( ConnectionType::$MASTER ) )
 			->will( $this->returnValue( $this->db ) );
 
 		// Make condition and queue and perform the delete
@@ -866,52 +867,6 @@ class DBPersistenceManagerTest extends MediaWikiTestCase {
 			$pmAndM->pm->existsWithConditions( 'MockEntity', $condition ) );
 	}
 
-	public function testExistsWithConditionsGetsMasterDbWhenRequested() {
-
-		$val = 'ExistsWithConditionsGetsMasterDbWhenRequested';
-		$pmAndM = $this->getPersistenceManagerAndMocks();
-
-		// Set up everything _except_ the call to getDb
-		$this->prepareMocks( null, $pmAndM, null, 'getDb' );
-
-		// This is the call that we're testing
-		$pmAndM->pm->expects( $this->once() )
-			->method( 'getDb' )
-			->with( $this->equalTo( true ) ) // requesting master
-			->will( $this->returnValue( $this->db ) );
-
-		$condition = new Condition(
-			$pmAndM->field1,
-			Operator::$EQUAL,
-			$val
-		);
-
-		$pmAndM->pm->existsWithConditions( 'MockEntity', $condition, true );
-	}
-
-	public function testExistsWithConditionsGetsSlaveDbWhenRequested() {
-
-		$val = 'ExistsWithConditionsGetsSlaveDbWhenRequested';
-		$pmAndM = $this->getPersistenceManagerAndMocks();
-
-		// Set up everything _except_ the call to getDb
-		$this->prepareMocks( null, $pmAndM, null, 'getDb' );
-
-		// This is the call that we're testing
-		$pmAndM->pm->expects( $this->once() )
-			->method( 'getDb' )
-			->with( $this->equalTo( false ) ) // not requesting master
-			->will( $this->returnValue( $this->db ) );
-
-		$condition = new Condition(
-			$pmAndM->field1,
-			Operator::$EQUAL,
-			$val
-		);
-
-		$pmAndM->pm->existsWithConditions( 'MockEntity', $condition );
-	}
-
 	public function testGetOneGetsMasterDbWhenRequested() {
 
 		$val = 'GetOneGetsMasterDbWhenRequested';
@@ -924,7 +879,7 @@ class DBPersistenceManagerTest extends MediaWikiTestCase {
 		// This is the call that we're testing
 		$pmAndM->pm->expects( $this->once() )
 			->method( 'getDb' )
-			->with( $this->equalTo( true ) ) // requesting master
+			->with( $this->equalTo( ConnectionType::$MASTER ) )
 			->will( $this->returnValue( $this->db ) );
 
 		$condition = new Condition(
@@ -933,7 +888,7 @@ class DBPersistenceManagerTest extends MediaWikiTestCase {
 			$val
 		);
 
-		$pmAndM->pm->getOne( 'MockEntity', $condition, true );
+		$pmAndM->pm->getOne( 'MockEntity', $condition, ConnectionType::$MASTER );
 	}
 
 	public function testGetOneGetsSlaveDbWhenRequested() {
@@ -1056,7 +1011,7 @@ class DBPersistenceManagerTest extends MediaWikiTestCase {
 			->with( $this->equalTo( 'MockEntity' ) )
 			->will( $this->returnValue( $pmAndM->idField ) );
 
-		$pmAndM->pm->getOneById( 'MockEntity', $r->id, true );
+		$pmAndM->pm->getOneById( 'MockEntity', $r->id, ConnectionType::$MASTER );
 	}
 
 	public function testGetOneByIdGetsMasterDbWhenRequested() {
@@ -1071,10 +1026,10 @@ class DBPersistenceManagerTest extends MediaWikiTestCase {
 		// This is the call that we're testing
 		$pmAndM->pm->expects( $this->once() )
 			->method( 'getDb' )
-			->with( $this->equalTo( true ) ) // requesting master
+			->with( $this->equalTo( ConnectionType::$MASTER ) )
 			->will( $this->returnValue( $this->db ) );
 
-		$pmAndM->pm->getOneById( 'MockEntity', $r->id, true );
+		$pmAndM->pm->getOneById( 'MockEntity', $r->id, ConnectionType::$MASTER );
 	}
 
 	public function testGetOneByIdGetsSlaveDbWhenRequested() {
@@ -1114,54 +1069,6 @@ class DBPersistenceManagerTest extends MediaWikiTestCase {
 
 		// Send in very unlikely ID
 		$this->assertNull( $pmAndM->pm->getOneById( 'MockEntity', 241231 ) );
-	}
-
-	public function testCountGetsMasterDbWhenRequested() {
-
-		$val = 'CountGetsMasterDbWhenRequested';
-		$this->insertRow( $val );
-		$pmAndM = $this->getPersistenceManagerAndMocks();
-
-		// Set up everything _except_ the call to getDb
-		$this->prepareMocks( null, $pmAndM, null, 'getDb' );
-
-		// This is the call that we're testing
-		$pmAndM->pm->expects( $this->once() )
-			->method( 'getDb' )
-			->with( $this->equalTo( true ) ) // requesting master
-			->will( $this->returnValue( $this->db ) );
-
-		$condition = new Condition(
-			$pmAndM->field1,
-			Operator::$EQUAL,
-			$val
-		);
-
-		$pmAndM->pm->count( 'MockEntity', $condition, true );
-	}
-
-	public function testCountGetsSlaveDbWhenRequested() {
-
-		$val = 'CountGetsSlaveDbWhenRequested';
-		$this->insertRow( $val );
-		$pmAndM = $this->getPersistenceManagerAndMocks();
-
-		// Set up everything _except_ the call to getDb
-		$this->prepareMocks( null, $pmAndM, null, 'getDb' );
-
-		// This is the call that we're testing
-		$pmAndM->pm->expects( $this->once() )
-			->method( 'getDb' )
-			->with( $this->equalTo( false ) ) // not requesting master
-			->will( $this->returnValue( $this->db ) );
-
-		$condition = new Condition(
-			$pmAndM->field1,
-			Operator::$EQUAL,
-			$val
-		);
-
-		$pmAndM->pm->count( 'MockEntity', $condition );
 	}
 
 	public function testCountGetsTableNameForType() {

@@ -3,6 +3,7 @@
 namespace Campaigns\Domain\Internal;
 
 use MWException;
+use Campaigns\ConnectionType;
 use Campaigns\Domain\ICampaign;
 use Campaigns\Domain\ICampaignRepository;
 use Campaigns\Domain\CampaignNameNotUniqueException;
@@ -110,14 +111,17 @@ class CampaignRepository implements ICampaignRepository {
 	/**
 	 * @see ICampaignRepository::getCampaignById()
 	 */
-	public function getCampaignById( $id, $useMaster=false ) {
-		return $this->pm->getOneById( 'ICampaign', $id, $useMaster );
+	public function getCampaignById( $id,
+		ConnectionType $connectionType=null ) {
+
+		return $this->pm->getOneById( 'ICampaign', $id, $connectionType );
 	}
 
 	/**
 	 * @see ICampaignRepository::getCampaignByUrlKey()
 	 */
-	public function getCampaignByUrlKey( $urlKey, $useMaster=false ) {
+	public function getCampaignByUrlKey( $urlKey,
+		ConnectionType $connectionType=null ) {
 
 		$condition = new Condition(
 			CampaignField::$URL_KEY,
@@ -125,13 +129,14 @@ class CampaignRepository implements ICampaignRepository {
 			$urlKey
 		);
 
-		return $this->pm->getOne( 'ICampaign', $condition, $useMaster );
+		return $this->pm->getOne( 'ICampaign', $condition, $connectionType );
 	}
 
 	/**
 	 * @see ICampaignRepository::getCampaignByName()
 	 */
-	public function getCampaignByName( $name, $useMaster=false ) {
+	public function getCampaignByName( $name,
+		ConnectionType $connectionType=null ) {
 
 		$condition = new Condition(
 			CampaignField::$NAME,
@@ -139,7 +144,7 @@ class CampaignRepository implements ICampaignRepository {
 			$name
 		);
 
-		return $this->pm->getOne( 'ICampaign', $condition, $useMaster );
+		return $this->pm->getOne( 'ICampaign', $condition, $connectionType );
 	}
 
 	/**
@@ -165,6 +170,69 @@ class CampaignRepository implements ICampaignRepository {
 		// on the order-by field and the order (ascending or descending).
 		return $this->pm->get( 'ICampaign', CampaignField::$NAME,
 			Order::$ASCENDING, $condition, $fetchLimit, $continueKey );
+	}
+
+	/**
+	 * @see ICampaignRepository::getOrCreateCampaignEnsureUrlKey()
+	 */
+	public function getOrCreateCampaignEnsureUrlKey( $urlKey, $suggestedName,
+		$maxAttempts ) {
+
+		$campaign =
+			$this->getCampaignByUrlKey( $urlKey, ConnectionType::$MASTER );
+
+		if ( is_null( $campaign ) ) {
+
+			$nameSuffix = '';
+			$attempts = 0;
+
+			// Go through this loop until we successfully create a campaign
+			// or hit a brick wall.
+			do {
+
+				$name = $suggestedName . $nameSuffix;
+				$attempts++;
+				$campaign = $this->createCampaign( $urlKey, $name );
+
+				try {
+
+					// This will throw an exception on duplicate name. We are
+					// already sure that our $urlKey is unique.
+					// TODO Double-check details of locking to be sure this is
+					// true.
+					$this->pm->flush();
+
+					// If we got here, the campaign was correctly saved and we
+					// can return it.
+					break;
+
+				} catch ( CampaignNameNotUniqueException $nameE ) {
+
+					// Hmmm, our name was not unique. If we've tried too many
+					// times, throw an exception.
+					if ( $attempts >= $maxAttempts ) {
+
+						throw new MWException( 'Too many attempts to find a ' .
+							'unique campaign name for URL key ' . $urlKey );
+					}
+
+					// If we haven't tried enough yet, try with another name.
+					$nameSuffix = uniqid( '-', true );
+					continue;
+				}
+
+				// We should have met a break or continue by now, so if we're
+				// here there's an unexpected problem.
+				throw new MWException( 'Unable to get a campaign for URL key ' .
+					$urlKey . '.' );
+
+			// In theory this check is redundant and we could just say
+			// while(true). But let's leave the check in to guard against a
+			// mistake in the above code causing an infinite loop. :)
+			} while ( $attempts < $maxAttempts );
+		}
+
+		return $campaign;
 	}
 
 	/**

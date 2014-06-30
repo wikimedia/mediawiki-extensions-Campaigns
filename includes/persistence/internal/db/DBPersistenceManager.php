@@ -6,6 +6,7 @@ use DatabaseBase;
 use MWException;
 use ApiBase;
 use Campaigns\TypesafeEnum;
+use Campaigns\ConnectionType;
 use Campaigns\Persistence\IPersistenceManager;
 use Campaigns\Persistence\Condition;
 use Campaigns\Persistence\Operator;
@@ -125,26 +126,27 @@ class DBPersistenceManager implements IPersistenceManager {
 	/**
 	 * @see IPersistenceManager::existsWithConditions()
 	 */
-	public function existsWithConditions( $type, $conditions,
-			$useMaster=false) {
+	public function existsWithConditions( $type, $conditions ) {
 
-		$count = $this->count( $type, $conditions, $useMaster );
+		$count = $this->count( $type, $conditions );
 		return $count > 0;
 	}
 
 	/**
 	 * @see IPersistenceManager::getOne()
 	 */
-	public function getOne( $type, $conditions, $useMaster=false ) {
+	public function getOne( $type, $conditions,
+		ConnectionType $connectionType=null ) {
 
-		$db = $this->getDb( $useMaster );
+		$db = $this->getDb( $connectionType );
 		return $this->getOneInternal( $type, $conditions, $db );
 	}
 
 	/**
 	 * @see IPersistenceManager::getOneById()
 	 */
-	public function getOneById( $type, $id, $useMaster=false ) {
+	public function getOneById( $type, $id,
+		ConnectionType $connectionType=null ) {
 
 		$condition = new Condition(
 			$this->mapper->getIdFieldForType( $type ),
@@ -152,15 +154,15 @@ class DBPersistenceManager implements IPersistenceManager {
 			$id
 		);
 
-		return $this->getOne( $type, $condition, $useMaster );
+		return $this->getOne( $type, $condition, $connectionType );
 	}
 
 	/**
 	 * @see IPersistenceManager::count()
 	 */
-	public function count( $type, $conditions=null, $useMaster=false) {
+	public function count( $type, $conditions=null ) {
 
-		$db = $this->getDb( $useMaster );
+		$db = $this->getDb();
 		$tableName = $this->mapper->getTableNameForType( $type );
 
 		if ( is_null( $conditions ) ) {
@@ -202,7 +204,7 @@ class DBPersistenceManager implements IPersistenceManager {
 			throw new MWException( '$orderByField must be unique or an id.' );
 		}
 
-		$dbr = $this->getDb( false );
+		$dbr = $this->getDb();
 		$tableName = $this->mapper->getTableNameForType( $type );
 		$orderByCol = $this->mapper->getDbColumn( $orderByField );
 
@@ -310,7 +312,7 @@ class DBPersistenceManager implements IPersistenceManager {
 	 * @see IPersistenceManager::getAnyStringForLikeOperator()
 	 */
 	public function getAnyStringForLikeOperator() {
-		return $this->getDb( false )->anyString();
+		return $this->getDb()->anyString();
 	}
 
 	/**
@@ -327,7 +329,7 @@ class DBPersistenceManager implements IPersistenceManager {
 		// throw an exception if there's a problem.
 		$this->mapper->verifyRequiredFields( $obj );
 
-		$dbw = $this->getDb( true );
+		$dbw = $this->getDb( ConnectionType::$MASTER );
 
 		// Get the table name and prepare the columns
 		$tableName = $this->mapper->getTableNameForObj( $obj );
@@ -508,7 +510,7 @@ class DBPersistenceManager implements IPersistenceManager {
 		// throw an exception if there's a problem.
 		$this->mapper->verifyRequiredFields( $obj );
 
-		$dbw = $this->getDb( true );
+		$dbw = $this->getDb( ConnectionType::$MASTER );
 
 		// Get the table name, prepare columns and values for insert
 		$tableName = $this->mapper->getTableNameForObj( $obj );
@@ -549,7 +551,7 @@ class DBPersistenceManager implements IPersistenceManager {
 	 */
 	protected function delete( DeleteOperation $op ) {
 
-		$dbw = $this->getDb( true );
+		$dbw = $this->getDb( ConnectionType::$MASTER );
 
 		$condForQuery = $this->prepareConditions( $op->conditions, $dbw );
 
@@ -564,15 +566,22 @@ class DBPersistenceManager implements IPersistenceManager {
 	/**
 	 * Get a database abstraction object (a DatabaseBase).
 	 *
-	 * @param boolean $writeDb Set to true for DB_MASTER, false for DB_SLAVE
+	 * @param ConnectionType $connectionType Set to MASTER for DB_MASTER, SLAVE
+	 *   for DB_SLAVE
+	 *
 	 * @return DatabaseBase
 	 */
-	protected function getDb( $writeDb ) {
-		if ( $writeDb ) {
-			return wfGetDB( DB_MASTER );
-		}
+	protected function getDb( ConnectionType $connectionType=null ) {
 
-		return wfGetDB( DB_SLAVE );
+		switch ( $connectionType ) {
+
+			case ConnectionType::$MASTER:
+				return wfGetDB( DB_MASTER );
+
+			case ConnectionType::$SLAVE: // Fall-through is intentional
+			default:
+				return wfGetDB( DB_SLAVE );
+		}
 	}
 
 	/**

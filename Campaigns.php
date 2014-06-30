@@ -34,6 +34,7 @@ $wgAutoloadClasses['Campaigns\Hooks'] = $dir . '/Campaigns.hooks.php';
 $wgAutoloadClasses['Campaigns\Setup\Setup'] = $dir . '/includes/setup/Setup.php';
 $wgAutoloadClasses['Campaigns\TypesafeEnum']  = $dir . '/includes/TypesafeEnum.php';
 $wgAutoloadClasses['Campaigns\ITypesafeEnum']  = $dir . '/includes/ITypesafeEnum.php';
+$wgAutoloadClasses['Campaigns\ConnectionType']  = $dir . '/includes/ConnectionType.php';
 
 $wgAutoloadClasses['Campaigns\Domain\ICampaign']  = $dir . '/includes/domain/ICampaign.php';
 $wgAutoloadClasses['Campaigns\Domain\IParticipation']  = $dir . '/includes/domain/IParticipation.php';

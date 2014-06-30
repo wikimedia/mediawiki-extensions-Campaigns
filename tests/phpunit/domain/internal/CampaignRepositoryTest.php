@@ -3,6 +3,7 @@
 namespace Campaigns\PHPUnit\Domain\Internal;
 
 use MediaWikiTestCase;
+use Campaigns\ConnectionType;
 use Campaigns\PHPUnit\TestHelper;
 use Campaigns\Domain\ICampaign;
 use Campaigns\Domain\Internal\CampaignRepository;
@@ -218,11 +219,11 @@ class CampaignRepositoryTest extends MediaWikiTestCase {
 			->with(
 				$this->equalTo( 'ICampaign' ),
 				$this->equalTo( 7 ),
-				$this->equalTo( true ) )
+				$this->equalTo( ConnectionType::$MASTER ) )
 			->will( $this->returnValue( $repoAndM->c ) );
 
 		$this->assertSame( $repoAndM->c,
-			$repoAndM->cRepo->getCampaignById( 7, true ) );
+			$repoAndM->cRepo->getCampaignById( 7, ConnectionType::$MASTER ) );
 	}
 
 	public function testGetCampaignByUrlKey() {
@@ -235,11 +236,12 @@ class CampaignRepositoryTest extends MediaWikiTestCase {
 			->with(
 				$this->equalTo( 'ICampaign' ),
 				$this->captureArg( $condition ),
-				$this->equalTo( true ) )
+				$this->equalTo( ConnectionType::$MASTER ) )
 			->will( $this->returnValue( $repoAndM->c ) );
 
 		$this->assertSame( $repoAndM->c,
-			$repoAndM->cRepo->getCampaignByUrlKey( 'urlKey', true ) );
+			$repoAndM->cRepo->getCampaignByUrlKey(
+			'urlKey', ConnectionType::$MASTER ) );
 
 		// Test the condition
 		$this->assertCondition(
@@ -260,11 +262,12 @@ class CampaignRepositoryTest extends MediaWikiTestCase {
 			->with(
 				$this->equalTo( 'ICampaign' ),
 				$this->captureArg( $condition ),
-				$this->equalTo( true ) )
+				$this->equalTo( ConnectionType::$MASTER ) )
 			->will( $this->returnValue( $repoAndM->c ) );
 
 		$this->assertSame( $repoAndM->c,
-			$repoAndM->cRepo->getCampaignByName( 'name', true ) );
+			$repoAndM->cRepo->getCampaignByName(
+			'name', ConnectionType::$MASTER ) );
 
 		// Test the condition
 		$this->assertCondition(
@@ -349,6 +352,8 @@ class CampaignRepositoryTest extends MediaWikiTestCase {
 		$this->assertSame( 200,
 			$repoAndM->cRepo->getMaxFetchLimit() );
 	}
+
+	// TODO: test getOrCreateCampaignEnsureUrlKey()
 
 	/**
 	 * Create and set up a fresh CampaignRepository and some mocks, and return

@@ -16,6 +16,7 @@ $wgExtensionCredits['other'][] = array(
 	'url' => 'https://www.mediawiki.org/wiki/Extension:Campaigns',
 	'author' => 'S Page',
 	'descriptionmsg' => 'campaigns-desc',
+	'license-name' => 'GPL-2.0+',
 );
 
 

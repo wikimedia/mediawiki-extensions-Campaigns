@@ -2,7 +2,6 @@
 
 class CampaignsHooks {
 	public static function onUserCreateForm( &$template ) {
-		global $wgCookiePrefix;
 		$maxCampaignLen = 40;
 
 		$skin = $template->getSkin();
@@ -27,7 +26,7 @@ class CampaignsHooks {
 	}
 
 	public static function onAddNewAccount( $user, $byEmail ) {
-		global $wgEventLoggingSchemaRevs, $wgRequest, $wgUser, $wgCookiePrefix;
+		global $wgRequest, $wgUser, $wgCookiePrefix;
 
 		$userId = $user->getId();
 		$creatorUserId = $wgUser->getId();

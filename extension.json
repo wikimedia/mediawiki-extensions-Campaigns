@@ -1,0 +1,44 @@
+{
+	"name": "Campaigns",
+	"version": "0.2.0",
+	"author": "S Page",
+	"url": "https://www.mediawiki.org/wiki/Extension:Campaigns",
+	"descriptionmsg": "campaigns-desc",
+	"license-name": "GPL-2.0+",
+	"type": "other",
+	"Hooks": {
+		"UserCreateForm": [
+			"CampaignsHooks::onUserCreateForm"
+		],
+		"AddNewAccount": [
+			"CampaignsHooks::onAddNewAccount"
+		],
+		"UserLoginForm": [
+			"CampaignsHooks::onUserLoginForm"
+		]
+	},
+	"MessagesDirs": {
+		"Campaigns": [
+			"i18n"
+		]
+	},
+	"ResourceModules": {
+		"ext.campaigns": {
+			"scripts": "ext.campaigns.js",
+			"dependencies": [
+				"jquery.cookie"
+			],
+			"targets": [
+				"mobile",
+				"desktop"
+			]
+		}
+	},
+	"ResourceFileModulePaths": {
+		"localBasePath": "modules",
+		"remoteExtPath": "Campaigns/modules"
+	},
+	"AutoloadClasses": {
+		"CampaignsHooks": "Campaigns.hooks.php"
+	}
+}

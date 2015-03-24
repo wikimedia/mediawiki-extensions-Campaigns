@@ -2,8 +2,9 @@
 	"@metadata": {
 		"authors": [
 			"S Page",
-			"Shirayuki"
+			"Shirayuki",
+			"Umherirrender"
 		]
 	},
-	"campaigns-desc": "{{desc|name=Campaigns|url=http://www.mediawiki.org/wiki/Extension:Campaigns}}"
+	"campaigns-desc": "{{desc|name=Campaigns|url=https://www.mediawiki.org/wiki/Extension:Campaigns}}"
 }

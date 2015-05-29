@@ -40,5 +40,6 @@
 	},
 	"AutoloadClasses": {
 		"CampaignsHooks": "Campaigns.hooks.php"
-	}
+	},
+	"manifest_version": 1
 }

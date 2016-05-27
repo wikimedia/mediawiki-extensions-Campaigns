@@ -1,11 +1,26 @@
 <?php
 
 class CampaignsHooks {
+	public static function onRegistration() {
+		global $wgHooks, $wgDisableAuthManager, $wgAuthManagerAutoConfig;
+
+		if ( class_exists( MediaWiki\Auth\AuthManager::class ) && empty( $wgDisableAuthManager ) ) {
+			$wgAuthManagerAutoConfig['secondaryauth'] += [
+				CampaignsSecondaryAuthenticationProvider::class => [
+					'class' => CampaignsSecondaryAuthenticationProvider::class,
+					'sort' => 0, // non-UI secondaries should run early
+				]
+			];
+		} else {
+			$wgHooks['UserCreateForm'][] = 'CampaignsHooks::onUserCreateForm';
+			$wgHooks['AddNewAccount'][] = 'CampaignsHooks::onAddNewAccount';
+		}
+	}
+
 	public static function onUserCreateForm( &$template ) {
 		$maxCampaignLen = 40;
 
 		$skin = $template->getSkin();
-
 		$request = $skin->getRequest();
 		$campaign = $request->getVal( 'campaign', '' );
 		if ( $campaign === '' || strlen( $campaign ) > $maxCampaignLen ) {
@@ -18,15 +33,15 @@ class CampaignsHooks {
 			return true;
 		};
 
-		$out = $skin->getOutput();
-		$out->addJsConfigVars( 'wgCampaignsCampaign', $campaign );
-		$out->addModules( 'ext.campaigns' );
+		$template->set( 'header',
+			Html::hidden( 'campaign', $campaign )
+		);
 
 		return true;
 	}
 
 	public static function onAddNewAccount( $user, $byEmail ) {
-		global $wgRequest, $wgUser, $wgCookiePrefix;
+		global $wgRequest, $wgUser;
 
 		$userId = $user->getId();
 		$creatorUserId = $wgUser->getId();
@@ -40,13 +55,14 @@ class CampaignsHooks {
 			MobileContext::singleton()->shouldDisplayMobileView();
 
 		$event = array(
-			'token' => $wgRequest->getCookie( 'mediaWiki.user.id', '', '' ),
 			'userId' => $userId,
 			'userName' => $user->getName(),
 			'isSelfMade' => $isSelfMade,
-			'campaign' =>  $wgRequest->getCookie( '-campaign', $wgCookiePrefix, '' ),
-			'userBuckets' => $wgRequest->getCookie( 'userbuckets', '', '' ),
+			'campaign' =>  $wgRequest->getVal( 'campaign', '' ),
 			'displayMobile' => $displayMobile,
+			// @todo: Remove these unused fields when they're no longer required by the schema.
+			'token' => '',
+			'userBuckets' => '',
 		);
 
 		$returnTo = $wgRequest->getVal( 'returnto' );
@@ -60,17 +76,6 @@ class CampaignsHooks {
 		}
 
 		EventLogging::logEvent( 'ServerSideAccountCreation', 5487345, $event );
-		return true;
-	}
-
-	public static function onUserLoginForm( &$template ) {
-		if ( $template->haveData( 'createOrLoginHref' ) ) {
-			$url = $template->data[ 'createOrLoginHref' ];
-			$url .=  strpos( $url, '?' ) ? '&' : '?';
-			$url .= 'campaign=loginCTA';
-			$template->set( 'createOrLoginHref', $url );
-		}
-
 		return true;
 	}
 }

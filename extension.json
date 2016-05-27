@@ -6,40 +6,16 @@
 	"descriptionmsg": "campaigns-desc",
 	"license-name": "GPL-2.0+",
 	"type": "other",
-	"Hooks": {
-		"UserCreateForm": [
-			"CampaignsHooks::onUserCreateForm"
-		],
-		"AddNewAccount": [
-			"CampaignsHooks::onAddNewAccount"
-		],
-		"UserLoginForm": [
-			"CampaignsHooks::onUserLoginForm"
-		]
-	},
+	"callback": "CampaignsHooks::onRegistration",
 	"MessagesDirs": {
 		"Campaigns": [
 			"i18n"
 		]
 	},
-	"ResourceModules": {
-		"ext.campaigns": {
-			"scripts": "ext.campaigns.js",
-			"dependencies": [
-				"jquery.cookie"
-			],
-			"targets": [
-				"mobile",
-				"desktop"
-			]
-		}
-	},
-	"ResourceFileModulePaths": {
-		"localBasePath": "modules",
-		"remoteExtPath": "Campaigns/modules"
-	},
 	"AutoloadClasses": {
-		"CampaignsHooks": "Campaigns.hooks.php"
+		"CampaignsHooks": "Campaigns.hooks.php",
+		"CampaignsAuthenticationRequest": "CampaignsAuthenticationRequest.php",
+		"CampaignsSecondaryAuthenticationProvider": "CampaignsSecondaryAuthenticationProvider.php"
 	},
 	"manifest_version": 1
 }

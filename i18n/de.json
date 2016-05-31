@@ -5,5 +5,7 @@
 			"Metalhead64"
 		]
 	},
-	"campaigns-desc": "Ermöglicht die Identifizierung der Kampagne, die zur Benutzerregistrierung führte"
+	"campaigns-desc": "Ermöglicht die Identifizierung der Kampagne, die zur Benutzerregistrierung führte",
+	"campaigns-campaign-label": "Kampagne",
+	"campaigns-campaign-help": "Identifiziert die Kampagne, die zu einer Benutzerkontenerstellung führt."
 }

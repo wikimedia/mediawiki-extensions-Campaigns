@@ -1,8 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
-			"Ainali"
+			"Ainali",
+			"WikiPhoenix"
 		]
 	},
-	"campaigns-desc": "Identifierar den kampanj som leder till att ett konto skapas"
+	"campaigns-desc": "Identifierar den kampanj som leder till att ett konto skapas",
+	"campaigns-campaign-label": "Kampanj"
 }

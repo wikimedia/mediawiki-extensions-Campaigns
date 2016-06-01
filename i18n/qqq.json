@@ -3,10 +3,11 @@
 		"authors": [
 			"S Page",
 			"Shirayuki",
-			"Umherirrender"
+			"Umherirrender",
+			"Liuxinyu970226"
 		]
 	},
 	"campaigns-desc": "{{desc|name=Campaigns|url=https://www.mediawiki.org/wiki/Extension:Campaigns}}",
-	"campaigns-campaign-label": "Label for the \"campaign\" field on the account creation form.",
+	"campaigns-campaign-label": "Label for the \"campaign\" field on the account creation form.\n{{Identical|Campaign}}",
 	"campaigns-campaign-help": "Help text for the \"campaign\" field on the account creation form."
 }

@@ -4,5 +4,7 @@
 			"Amire80"
 		]
 	},
-	"campaigns-desc": "מזהה את מסע הפרסום שמוביל ליצירת חשבון"
+	"campaigns-desc": "מזהה את מסע הפרסום שמוביל ליצירת חשבון",
+	"campaigns-campaign-label": "מבצע פרסום",
+	"campaigns-campaign-help": "מזהה את מבצע הפרסום בתור אחד שמוביל ליצירת חשבון."
 }

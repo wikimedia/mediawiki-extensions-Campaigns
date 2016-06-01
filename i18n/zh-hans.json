@@ -1,8 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
-			"Qiyue2001"
+			"Qiyue2001",
+			"Liuxinyu970226",
+			"Yfdyh000"
 		]
 	},
-	"campaigns-desc": "标识导致帐户创建的行为"
+	"campaigns-desc": "识别导致账户创建的活动",
+	"campaigns-campaign-label": "活动",
+	"campaigns-campaign-help": "识别导致账户创建的活动。"
 }

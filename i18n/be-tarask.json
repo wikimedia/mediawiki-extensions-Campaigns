@@ -1,8 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
-			"Wizardist"
+			"Wizardist",
+			"Red Winged Duck"
 		]
 	},
-	"campaigns-desc": "Вызначае кампанію, якая прыводзіць да стварэньня рахунку"
+	"campaigns-desc": "Вызначае кампанію, якая прыводзіць да стварэньня рахунку",
+	"campaigns-campaign-label": "Кампанія"
 }

@@ -5,5 +5,6 @@
 			"Gianfranco"
 		]
 	},
-	"campaigns-desc": "Identifica la campagna che porta alla creazione di un'utenza."
+	"campaigns-desc": "Identifica la campagna che porta alla creazione di un'utenza.",
+	"campaigns-campaign-label": "Campagna"
 }

@@ -2,9 +2,11 @@
 	"@metadata": {
 		"authors": [
 			"Gomoko",
-			"Yasten"
+			"Yasten",
+			"Trial"
 		]
 	},
 	"campaigns-desc": "Identifie la campagne amenant à une création de compte.",
-	"campaigns-campaign-label": "Campagne"
+	"campaigns-campaign-label": "Campagne",
+	"campaigns-campaign-help": "Identifie la campagne menant à une création de compte."
 }

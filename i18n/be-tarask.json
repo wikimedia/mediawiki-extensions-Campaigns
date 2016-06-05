@@ -6,5 +6,6 @@
 		]
 	},
 	"campaigns-desc": "Вызначае кампанію, якая прыводзіць да стварэньня рахунку",
-	"campaigns-campaign-label": "Кампанія"
+	"campaigns-campaign-label": "Кампанія",
+	"campaigns-campaign-help": "Вызначае кампанію, якая вядзе да стварэньня рахунку."
 }

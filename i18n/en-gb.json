@@ -1,8 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"Chase me ladies, I'm the Cavalry"
+			"Chase me ladies, I'm the Cavalry",
+			"Andibing"
 		]
 	},
-	"campaigns-desc": "Identifies the campaign leading to an account creation"
+	"campaigns-desc": "Identifies the campaign leading to an account creation",
+	"campaigns-campaign-label": "Campaign",
+	"campaigns-campaign-help": "Identifies the campaign leading to an account creation."
 }

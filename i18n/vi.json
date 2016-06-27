@@ -4,5 +4,7 @@
 			"Minh Nguyen"
 		]
 	},
-	"campaigns-desc": "Xác định chiến dịch thuyết phục người dùng mở tài khoản."
+	"campaigns-desc": "Xác định chiến dịch thuyết phục người dùng mở tài khoản.",
+	"campaigns-campaign-label": "Chiến dịch",
+	"campaigns-campaign-help": "Xác định chiến dịch thuyết phục người dùng mở tài khoản."
 }

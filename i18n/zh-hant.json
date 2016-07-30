@@ -3,8 +3,11 @@
 		"authors": [
 			"Justincheng12345",
 			"StephDC",
-			"Cwlin0416"
+			"Cwlin0416",
+			"Waihorace"
 		]
 	},
-	"campaigns-desc": "辨識可引起使用者建立帳號的活動"
+	"campaigns-desc": "辨識可引起使用者建立帳號的活動",
+	"campaigns-campaign-label": "活動",
+	"campaigns-campaign-help": "識別導致建立帳戶的活動。"
 }

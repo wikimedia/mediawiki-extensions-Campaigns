@@ -1,8 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
-			"Asaifm"
+			"Asaifm",
+			"Helmoony"
 		]
 	},
-	"campaigns-desc": "تحدد الحملة التي تؤدي إلى إنشاء حساب"
+	"campaigns-desc": "تحدد الحملة التي تؤدي إلى إنشاء حساب",
+	"campaigns-campaign-label": "حملة"
 }

@@ -2,9 +2,11 @@
 	"@metadata": {
 		"authors": [
 			"Ainali",
-			"WikiPhoenix"
+			"WikiPhoenix",
+			"Jopparn"
 		]
 	},
 	"campaigns-desc": "Identifierar den kampanj som leder till att ett konto skapas",
-	"campaigns-campaign-label": "Kampanj"
+	"campaigns-campaign-label": "Kampanj",
+	"campaigns-campaign-help": "Identifierar den kampanj som leder till att ett konto skapas."
 }

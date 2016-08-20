@@ -1,8 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
-			"Albertas"
+			"Albertas",
+			"Eitvys200"
 		]
 	},
-	"campaigns-desc": "Identifikuoja kampaniją, kuri skirta paskyros sukūrimui"
+	"campaigns-desc": "Identifikuoja kampaniją, kuri skirta paskyros sukūrimui",
+	"campaigns-campaign-label": "Kampanija"
 }

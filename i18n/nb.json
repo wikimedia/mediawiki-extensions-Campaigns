@@ -1,5 +1,9 @@
 {
-	"@metadata": [],
+	"@metadata": {
+		"authors": [
+			"Jon Harald Søby"
+		]
+	},
 	"campaigns-desc": "Idenifiserer kampanjen som førte til kontoopprettelse",
 	"campaigns-campaign-label": "Kampanje",
 	"campaigns-campaign-help": "Identifiserer kampanjen som førte til kontoopprettelse."

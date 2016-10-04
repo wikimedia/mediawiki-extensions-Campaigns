@@ -2,9 +2,11 @@
 	"@metadata": {
 		"authors": [
 			"Beta16",
-			"Gianfranco"
+			"Gianfranco",
+			"Selven"
 		]
 	},
-	"campaigns-desc": "Identifica la campagna che porta alla creazione di un'utenza.",
-	"campaigns-campaign-label": "Campagna"
+	"campaigns-desc": "Identifica la campagna che porta alla creazione di un'utenza",
+	"campaigns-campaign-label": "Campagna",
+	"campaigns-campaign-help": "Identifica la campagna che porta alla creazione di un'utenza."
 }

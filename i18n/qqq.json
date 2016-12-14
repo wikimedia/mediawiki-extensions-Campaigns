@@ -8,6 +8,6 @@
 		]
 	},
 	"campaigns-desc": "{{desc|name=Campaigns|url=https://www.mediawiki.org/wiki/Extension:Campaigns}}",
-	"campaigns-campaign-label": "Label for the \"campaign\" field on the account creation form. For languages which no single \"Campaign\" meaning word available, please translate it as meaning announcement, not activity!\n{{Identical|Campaign}}",
+	"campaigns-campaign-label": "Label for the \"campaign\" field on the account creation form.\n{{Identical|Campaign}}",
 	"campaigns-campaign-help": "Help text for the \"campaign\" field on the account creation form."
 }

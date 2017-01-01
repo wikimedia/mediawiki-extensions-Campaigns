@@ -1,8 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
-			"Cedric31"
+			"Cedric31",
+			"Nicolas Eynaud"
 		]
 	},
-	"campaigns-desc": "Identifica la campanha que mena a una creacion de compte."
+	"campaigns-desc": "Identifica la campanha que mena a una creacion de compte.",
+	"campaigns-campaign-label": "Campanha"
 }

@@ -1,8 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
-			"KuboF"
+			"KuboF",
+			"NMaia"
 		]
 	},
-	"campaigns-desc": "Identigas kampanjon, kiu rezultis en kreo de konto"
+	"campaigns-desc": "Identigas kampanjon, kiu rezultis en kreo de konto",
+	"campaigns-campaign-label": "Kampanjo"
 }

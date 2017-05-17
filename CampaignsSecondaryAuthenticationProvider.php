@@ -51,7 +51,7 @@ class CampaignsSecondaryAuthenticationProvider
 		$displayMobile = class_exists( 'MobileContext' ) &&
 			MobileContext::singleton()->shouldDisplayMobileView();
 
-		$event = array(
+		$event = [
 			'userId' => $userId,
 			'userName' => $user->getName(),
 			'isSelfMade' => $isSelfMade,
@@ -60,7 +60,7 @@ class CampaignsSecondaryAuthenticationProvider
 			// @todo: Remove these unused fields when they're no longer required by the schema.
 			'token' => '',
 			'userBuckets' => '',
-		);
+		];
 
 		$returnTo = $request->getVal( 'returnto', $req ? $req->returnTo : null );
 		if ( $returnTo !== null ) {

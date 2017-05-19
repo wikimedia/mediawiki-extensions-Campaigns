@@ -1,8 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"Jayprakash12345"
+			"Jayprakash12345",
+			"Sfic"
 		]
 	},
-	"campaigns-campaign-label": "अभियान"
+	"campaigns-desc": "एक खाता निर्माण के लिए अभियान की पहचान करता है",
+	"campaigns-campaign-label": "अभियान",
+	"campaigns-campaign-help": "Identifies the campaign leading to an account creation."
 }

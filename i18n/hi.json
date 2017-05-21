@@ -6,5 +6,6 @@
 		]
 	},
 	"campaigns-desc": "एक खाता निर्माण के लिए अभियान की पहचान करता है",
-	"campaigns-campaign-label": "अभियान"
+	"campaigns-campaign-label": "अभियान",
+	"campaigns-campaign-help": "खाता निर्माण के अभियान की पहचान करता है।"
 }

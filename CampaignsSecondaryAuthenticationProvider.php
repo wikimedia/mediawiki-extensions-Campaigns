@@ -10,8 +10,7 @@ use MediaWiki\Auth\AuthenticationResponse;
  * was set on account creation form link if one was present.
  */
 class CampaignsSecondaryAuthenticationProvider
-	extends AbstractSecondaryAuthenticationProvider
-{
+	extends AbstractSecondaryAuthenticationProvider {
 
 	/**
 	 * @param array $params

@@ -5,5 +5,6 @@
 		]
 	},
 	"campaigns-desc": "Identificeert de campagne die toet registratie haet geleid",
-	"campaigns-campaign-label": "Kampanj"
+	"campaigns-campaign-label": "Kampanj",
+	"campaigns-campaign-help": "Identificeert de campagne die toet registratie haet geleid."
 }

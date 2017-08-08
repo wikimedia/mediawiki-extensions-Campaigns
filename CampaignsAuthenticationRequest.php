@@ -8,7 +8,7 @@ use MediaWiki\Auth\AuthenticationRequest;
 class CampaignsAuthenticationRequest extends AuthenticationRequest {
 	public $required = self::OPTIONAL;
 
-	/** @var boolean Whether to use the campaign field from the request */
+	/** @var bool Whether to use the campaign field from the request */
 	private $useCampaignField;
 
 	/** @var string Campaign to log */
@@ -22,7 +22,7 @@ class CampaignsAuthenticationRequest extends AuthenticationRequest {
 
 	/**
 	 * @param WebRequest $request Request to load data from
-	 * @param boolean $useCampaignField Whether to actually use the 'campaign' field
+	 * @param bool $useCampaignField Whether to actually use the 'campaign' field
 	 */
 	public function __construct( WebRequest $request, $useCampaignField ) {
 		$this->useCampaignField = $useCampaignField;

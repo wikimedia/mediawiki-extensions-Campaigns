@@ -68,7 +68,7 @@ class CampaignsHooks {
 			'userId' => $userId,
 			'userName' => $user->getName(),
 			'isSelfMade' => $isSelfMade,
-			'campaign' =>  $wgRequest->getVal( 'campaign', '' ),
+			'campaign' => $wgRequest->getVal( 'campaign', '' ),
 			'displayMobile' => $displayMobile,
 			// @todo: Remove these unused fields when they're no longer required by the schema.
 			'token' => '',

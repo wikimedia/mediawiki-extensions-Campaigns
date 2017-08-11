@@ -54,7 +54,7 @@ class CampaignsSecondaryAuthenticationProvider
 			'userId' => $userId,
 			'userName' => $user->getName(),
 			'isSelfMade' => $isSelfMade,
-			'campaign' =>  $req ? $req->campaign : '',
+			'campaign' => $req ? $req->campaign : '',
 			'displayMobile' => $displayMobile,
 			// @todo: Remove these unused fields when they're no longer required by the schema.
 			'token' => '',

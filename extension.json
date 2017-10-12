@@ -20,7 +20,7 @@
 		"AuthChangeFormFields": "CampaignsHooks::onAuthChangeFormFields"
 	},
 	"AuthManagerAutoConfig": {
-		"primaryauth": {
+		"secondaryauth": {
 			"CampaignsSecondaryAuthenticationProvider": {
 				"class": "CampaignsSecondaryAuthenticationProvider",
 				"sort": 0

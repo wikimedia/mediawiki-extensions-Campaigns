@@ -6,7 +6,6 @@
 	"descriptionmsg": "campaigns-desc",
 	"license-name": "GPL-2.0+",
 	"type": "other",
-	"callback": "CampaignsHooks::onRegistration",
 	"MessagesDirs": {
 		"Campaigns": [
 			"i18n"
@@ -16,6 +15,17 @@
 		"CampaignsHooks": "Campaigns.hooks.php",
 		"CampaignsAuthenticationRequest": "CampaignsAuthenticationRequest.php",
 		"CampaignsSecondaryAuthenticationProvider": "CampaignsSecondaryAuthenticationProvider.php"
+	},
+	"Hooks": {
+		"AuthChangeFormFields": "CampaignsHooks::onAuthChangeFormFields"
+	},
+	"AuthManagerAutoConfig": {
+		"primaryauth": {
+			"CampaignsSecondaryAuthenticationProvider": {
+				"class": "CampaignsSecondaryAuthenticationProvider",
+				"sort": 0
+			}
+		}
 	},
 	"manifest_version": 1
 }

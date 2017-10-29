@@ -1,8 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
-			"Rachmat.Wahidi"
+			"Rachmat.Wahidi",
+			"Gombang",
+			"Rachmat04"
 		]
 	},
-	"campaigns-campaign-label": "Kampanye"
+	"campaigns-desc": "Kenali kampanye yang mendorong ke pembuatan akun",
+	"campaigns-campaign-label": "Kampanye",
+	"campaigns-campaign-help": "Kenali kampanye yang mendorong ke pembuatan akun."
 }

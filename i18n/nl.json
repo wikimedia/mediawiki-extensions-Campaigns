@@ -2,9 +2,11 @@
 	"@metadata": {
 		"authors": [
 			"Siebrand",
-			"Huhbakker"
+			"Huhbakker",
+			"Mainframe98"
 		]
 	},
 	"campaigns-desc": "Identificeert de campagne die tot registratie heeft geleid",
-	"campaigns-campaign-label": "Campagne"
+	"campaigns-campaign-label": "Campagne",
+	"campaigns-campaign-help": "Identificeert de campagne die tot registratie heeft geleid."
 }

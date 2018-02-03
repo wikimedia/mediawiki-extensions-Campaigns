@@ -59,6 +59,7 @@ class CampaignsSecondaryAuthenticationProvider
 			// @todo: Remove these unused fields when they're no longer required by the schema.
 			'token' => '',
 			'userBuckets' => '',
+			'isApi' => defined( 'MW_API' ),
 		];
 
 		$returnTo = $request->getVal( 'returnto', $req ? $req->returnTo : null );
@@ -71,7 +72,7 @@ class CampaignsSecondaryAuthenticationProvider
 			$event[ 'returnToQuery' ] = $returnToQuery;
 		}
 
-		EventLogging::logEvent( 'ServerSideAccountCreation', 5487345, $event );
+		EventLogging::logEvent( 'ServerSideAccountCreation', 17706338, $event );
 
 		return AuthenticationResponse::newPass();
 	}

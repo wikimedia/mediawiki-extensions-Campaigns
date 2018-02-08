@@ -72,7 +72,7 @@ class CampaignsSecondaryAuthenticationProvider
 			$event[ 'returnToQuery' ] = $returnToQuery;
 		}
 
-		EventLogging::logEvent( 'ServerSideAccountCreation', 17706338, $event );
+		EventLogging::logEvent( 'ServerSideAccountCreation', 17719237, $event );
 
 		return AuthenticationResponse::newPass();
 	}

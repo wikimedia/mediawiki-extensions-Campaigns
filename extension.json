@@ -12,9 +12,9 @@
 		]
 	},
 	"AutoloadClasses": {
-		"CampaignsHooks": "Campaigns.hooks.php",
-		"CampaignsAuthenticationRequest": "CampaignsAuthenticationRequest.php",
-		"CampaignsSecondaryAuthenticationProvider": "CampaignsSecondaryAuthenticationProvider.php"
+		"CampaignsHooks": "includes/CampaignsHooks.php",
+		"CampaignsAuthenticationRequest": "includes/CampaignsAuthenticationRequest.php",
+		"CampaignsSecondaryAuthenticationProvider": "includes/CampaignsSecondaryAuthenticationProvider.php"
 	},
 	"Hooks": {
 		"AuthChangeFormFields": "CampaignsHooks::onAuthChangeFormFields"

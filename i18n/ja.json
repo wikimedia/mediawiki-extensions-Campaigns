@@ -1,8 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"Shirayuki"
+			"Shirayuki",
+			"Yusuke1109"
 		]
 	},
-	"campaigns-desc": "アカウント作成に至るキャンペーンを識別する"
+	"campaigns-desc": "アカウント作成に至るキャンペーンを識別する",
+	"campaigns-campaign-label": "告知",
+	"campaigns-campaign-help": "アカウント作成につながるキャンペーンを識別します。"
 }

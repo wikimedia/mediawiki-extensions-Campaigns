@@ -1,10 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"Amire80"
+			"Amire80",
+			"Guycn2"
 		]
 	},
-	"campaigns-desc": "מזהה את מסע הפרסום שמוביל ליצירת חשבון",
+	"campaigns-desc": "זיהוי מסע הפרסום שמוביל ליצירת חשבון",
 	"campaigns-campaign-label": "מבצע פרסום",
-	"campaigns-campaign-help": "מזהה את מבצע הפרסום בתור אחד שמוביל ליצירת חשבון."
+	"campaigns-campaign-help": "זיהוי מסע הפרסום שמוביל ליצירת חשבון."
 }

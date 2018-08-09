@@ -1,8 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
-			"Christian List"
+			"Christian List",
+			"Saederup92"
 		]
 	},
-	"campaigns-desc": "Identificerer kampagnen der førte til en kontooprettelse"
+	"campaigns-desc": "Identificerer kampagnen der førte til en kontooprettelse",
+	"campaigns-campaign-label": "Kampagne"
 }

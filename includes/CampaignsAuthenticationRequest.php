@@ -37,6 +37,10 @@ class CampaignsAuthenticationRequest extends AuthenticationRequest {
 		$this->returnToQuery = $request->getVal( 'returntoquery' );
 	}
 
+	/**
+	 * @inheritDoc
+	 * @suppress SecurityCheck-DoubleEscaped T202112
+	 */
 	public function getFieldInfo() {
 		if ( $this->useCampaignField ) {
 			return [

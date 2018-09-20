@@ -1,8 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"Nike"
+			"Nike",
+			"01miki10"
 		]
 	},
-	"campaigns-campaign-label": "Kampanja"
+	"campaigns-desc": "Tunnistaa käyttäjätunnuksen luontiin johtavan kampanjan",
+	"campaigns-campaign-label": "Kampanja",
+	"campaigns-campaign-help": "Tunnistaa käyttäjätunnuksen luontiin johtavan kampanjan."
 }

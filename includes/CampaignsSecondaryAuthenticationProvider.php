@@ -47,7 +47,7 @@ class CampaignsSecondaryAuthenticationProvider
 		// the ID of the user making this web request are different.
 		$isSelfMade = ( $userId && $userId === $creatorUserId ) || !$creatorUserId;
 
-		$displayMobile = class_exists( MobileContext::class ) &&
+		$displayMobile = ExtensionRegistry::getInstance()->isLoaded( 'MobileFrontend' ) &&
 			MobileContext::singleton()->shouldDisplayMobileView();
 
 		$event = [

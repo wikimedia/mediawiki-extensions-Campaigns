@@ -54,6 +54,7 @@ class CampaignsSecondaryAuthenticationProvider
 			'userId' => $userId,
 			'userName' => $user->getName(),
 			'isSelfMade' => $isSelfMade,
+			/** @phan-suppress-next-line PhanUndeclaredProperty */
 			'campaign' => $req ? $req->campaign : '',
 			'displayMobile' => $displayMobile,
 			// @todo: Remove these unused fields when they're no longer required by the schema.
@@ -62,11 +63,13 @@ class CampaignsSecondaryAuthenticationProvider
 			'isApi' => defined( 'MW_API' ),
 		];
 
+		/** @phan-suppress-next-line PhanUndeclaredProperty */
 		$returnTo = $request->getVal( 'returnto', $req ? $req->returnTo : null );
 		if ( $returnTo !== null ) {
 			$event[ 'returnTo' ] = $returnTo;
 		}
 
+		/** @phan-suppress-next-line PhanUndeclaredProperty */
 		$returnToQuery = $request->getVal( 'returntoquery', $req ? $req->returnToQuery : null );
 		if ( $returnToQuery !== null ) {
 			$event[ 'returnToQuery' ] = $returnToQuery;

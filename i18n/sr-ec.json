@@ -1,9 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
-			"Zoranzoki21"
+			"Zoranzoki21",
+			"BadDog"
 		]
 	},
-	"campaigns-desc": "Идентификује кампању која води ка креирању налога",
-	"campaigns-campaign-help": "Идентификује кампању која води ка креирању налога."
+	"campaigns-desc": "Идентификује кампању која води до отварања налога",
+	"campaigns-campaign-help": "Идентификује кампању која води до отварања налога."
 }

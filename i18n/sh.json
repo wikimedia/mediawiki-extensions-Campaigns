@@ -5,5 +5,6 @@
 		]
 	},
 	"campaigns-desc": "Omogućuje prikazivanje kampanje koja je dovela do stvaranja računa.",
+	"campaigns-campaign-label": "Kampanja",
 	"campaigns-campaign-help": "Označava kampanju koja vodi do kreiranja računa."
 }

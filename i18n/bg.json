@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"StanProg"
+		]
+	},
+	"campaigns-desc": "Идентифицира кампанията, водеща до създаване на акаунт",
+	"campaigns-campaign-label": "Кампания",
+	"campaigns-campaign-help": "Идентифицира кампанията, водеща до създаване на акаунт."
+}

@@ -1,8 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"Geopoet"
+			"Geopoet",
+			"Brazal.dang"
 		]
 	},
-	"campaigns-desc": "Minabisto sa kampanya na minatukdo pasiring sa sarong pagmumukna nin panindog."
+	"campaigns-desc": "Minabisto sa kampanya na minatukdo pasiring sa sarong pagmumukna nin panindog.",
+	"campaigns-campaign-label": "Kampanya",
+	"campaigns-campaign-help": "Minabisto sa kampanya na minatukdo pasiring sa sarong pagmumukna nin panindog."
 }

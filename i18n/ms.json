@@ -1,8 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"Anakmalaysia"
+			"Anakmalaysia",
+			"CyberTroopers"
 		]
 	},
-	"campaigns-desc": "Mengenal pasti kempen yang membawa kepada pembukaan akaun."
+	"campaigns-desc": "Mengenal pasti kempen yang membawa kepada pembukaan akaun.",
+	"campaigns-campaign-label": "Kempen",
+	"campaigns-campaign-help": "Mengenal pasti kempen yang membawa kepada penciptaan akaun."
 }

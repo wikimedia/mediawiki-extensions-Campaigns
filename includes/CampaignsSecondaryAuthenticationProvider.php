@@ -1,9 +1,9 @@
 <?php
 
-use MediaWiki\Auth\AuthManager;
 use MediaWiki\Auth\AbstractSecondaryAuthenticationProvider;
 use MediaWiki\Auth\AuthenticationRequest;
 use MediaWiki\Auth\AuthenticationResponse;
+use MediaWiki\Auth\AuthManager;
 
 /**
  * Log user creations to EventLogging, including the parameter "campaign" that

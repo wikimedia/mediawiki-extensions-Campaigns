@@ -2,9 +2,9 @@
 	"@metadata": {
 		"authors": [
 			"Gomoko",
-			"Yasten",
 			"Trial",
-			"Wladek92"
+			"Wladek92",
+			"Yasten"
 		]
 	},
 	"campaigns-desc": "Identifie la campagne amenant à une création de compte",

@@ -1,8 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
+			"1917 Ekim Devrimi",
 			"Kumkumuk"
 		]
 	},
-	"campaigns-campaign-label": "Kampanya"
+	"campaigns-campaign-label": "Kampanya",
+	"campaigns-campaign-help": "Yew hesab akerdışi rê wesile bıyaye kampanyay şınasneno"
 }

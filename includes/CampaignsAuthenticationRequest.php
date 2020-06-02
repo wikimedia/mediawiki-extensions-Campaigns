@@ -39,7 +39,6 @@ class CampaignsAuthenticationRequest extends AuthenticationRequest {
 
 	/**
 	 * @inheritDoc
-	 * @suppress SecurityCheck-DoubleEscaped T202112
 	 */
 	public function getFieldInfo() {
 		if ( $this->useCampaignField ) {

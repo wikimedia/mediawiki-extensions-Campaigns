@@ -72,7 +72,9 @@ class CampaignsSecondaryAuthenticationProvider
 			$event[ 'returnToQuery' ] = $returnToQuery;
 		}
 
-		EventLogging::logEvent( 'ServerSideAccountCreation', 17719237, $event );
+		// This has been migrated to an Event Platform schema; schema revision is no longer used
+		// in this call.  Versioned schema URI is set in extension.json.
+		EventLogging::logEvent( 'ServerSideAccountCreation', -1, $event );
 
 		return AuthenticationResponse::newPass();
 	}

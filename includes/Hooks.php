@@ -1,6 +1,8 @@
 <?php
 
-class CampaignsHooks {
+namespace MediaWiki\Extension\Campaigns;
+
+class Hooks {
 	public static function onAuthChangeFormFields(
 		array $requests, array $fieldInfo, array &$formDescriptor, $action
 	) {

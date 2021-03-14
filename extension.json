@@ -7,20 +7,21 @@
 	"license-name": "GPL-2.0-or-later",
 	"type": "other",
 	"requires": {
-		"MediaWiki": ">= 1.29.0"
+		"MediaWiki": ">= 1.36.0",
+		"extensions": {
+			"EventLogging": "*"
+		}
 	},
 	"MessagesDirs": {
 		"Campaigns": [
 			"i18n"
 		]
 	},
-	"AutoloadClasses": {
-		"CampaignsHooks": "includes/CampaignsHooks.php",
-		"CampaignsAuthenticationRequest": "includes/CampaignsAuthenticationRequest.php",
-		"CampaignsSecondaryAuthenticationProvider": "includes/CampaignsSecondaryAuthenticationProvider.php"
+	"AutoloadNamespaces": {
+		"MediaWiki\\Extension\\Campaigns\\": "includes/"
 	},
 	"Hooks": {
-		"AuthChangeFormFields": "CampaignsHooks::onAuthChangeFormFields"
+		"AuthChangeFormFields": "MediaWiki\\Extension\\Campaigns\\Hooks::onAuthChangeFormFields"
 	},
 	"attributes": {
 		"EventLogging": {
@@ -32,7 +33,7 @@
 	"AuthManagerAutoConfig": {
 		"secondaryauth": {
 			"CampaignsSecondaryAuthenticationProvider": {
-				"class": "CampaignsSecondaryAuthenticationProvider",
+				"class": "MediaWiki\\Extension\\Campaigns\\CampaignsSecondaryAuthenticationProvider",
 				"sort": 0
 			}
 		}

@@ -1,9 +1,14 @@
 <?php
 
+namespace MediaWiki\Extension\Campaigns;
+
+use EventLogging;
+use ExtensionRegistry;
 use MediaWiki\Auth\AbstractSecondaryAuthenticationProvider;
 use MediaWiki\Auth\AuthenticationRequest;
 use MediaWiki\Auth\AuthenticationResponse;
 use MediaWiki\Auth\AuthManager;
+use MobileContext;
 
 /**
  * Log user creations to EventLogging, including the parameter "campaign" that
@@ -73,7 +78,7 @@ class CampaignsSecondaryAuthenticationProvider
 		}
 
 		// This has been migrated to an Event Platform schema; schema revision is no longer used
-		// in this call.  Versioned schema URI is set in extension.json.
+		// in this call. Versioned schema URI is set in extension.json.
 		EventLogging::logEvent( 'ServerSideAccountCreation', -1, $event );
 
 		return AuthenticationResponse::newPass();

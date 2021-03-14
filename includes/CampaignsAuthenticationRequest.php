@@ -1,6 +1,9 @@
 <?php
 
+namespace MediaWiki\Extension\Campaigns;
+
 use MediaWiki\Auth\AuthenticationRequest;
+use WebRequest;
 
 /**
  * An authentication request to grab the custom field passed to the creation form.

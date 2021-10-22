@@ -1,11 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
+			"Base",
 			"DDPAT",
 			"Ата"
 		]
 	},
 	"campaigns-desc": "Визначає кампанію, що призводить до створення облікового запису",
-	"campaigns-campaign-label": "Компанія",
-	"campaigns-campaign-help": "Визначає компанію, що призводить до створення облікового запису."
+	"campaigns-campaign-label": "Кампанія",
+	"campaigns-campaign-help": "Визначає кампанію, що призводить до створення облікового запису."
 }

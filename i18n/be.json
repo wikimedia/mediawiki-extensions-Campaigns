@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Chadyka"
+		]
+	},
+	"campaigns-desc": "Вызначае кампанію, якая прыводзіць да стварэння рахунку",
+	"campaigns-campaign-label": "Кампанія",
+	"campaigns-campaign-help": "Вызначае кампанію, якая прыводзіць да стварэння рахунку."
+}

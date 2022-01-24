@@ -4,10 +4,11 @@
 			"Liuxinyu970226",
 			"Qiyue2001",
 			"Yfdyh000",
-			"Shizhao"
+			"Shizhao",
+			"Tranve"
 		]
 	},
-	"campaigns-desc": "标识导致账户创建的活动",
+	"campaigns-desc": "标识导致账号创建的活动",
 	"campaigns-campaign-label": "活动",
-	"campaigns-campaign-help": "标识导致账户创建的活动。"
+	"campaigns-campaign-help": "标识导致账号创建的活动。"
 }

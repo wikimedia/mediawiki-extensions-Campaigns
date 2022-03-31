@@ -2,10 +2,11 @@
 	"@metadata": {
 		"authors": [
 			"Ladsgroup",
-			"Reza1615"
+			"Reza1615",
+			"Beginneruser"
 		]
 	},
-	"campaigns-desc": "شناسایی کمپین منجر به ایجاد حساب کاربری.",
+	"campaigns-desc": "شناسایی کمپین منجر به ایجاد حساب.",
 	"campaigns-campaign-label": "کمپین",
-	"campaigns-campaign-help": "شناسایی کمپین منجر به ایجاد حساب کاربری.."
+	"campaigns-campaign-help": "شناسایی کمپین منجر به ایجاد حساب ."
 }

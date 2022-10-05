@@ -4,5 +4,7 @@
 			"Eleassar"
 		]
 	},
-	"campaigns-campaign-label": "Kampanja"
+	"campaigns-desc": "Omogoča določitev kampanje, ki je pripeljala do ustvaritve računa",
+	"campaigns-campaign-label": "Kampanja",
+	"campaigns-campaign-help": "Omogoča določitev kampanje, ki je pripeljala do ustvaritve računa."
 }

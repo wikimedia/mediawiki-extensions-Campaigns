@@ -5,6 +5,7 @@
 			"Zoranzoki21"
 		]
 	},
-	"campaigns-desc": "Identifikuje kampanju koja vodi ka kreiranju naloga",
-	"campaigns-campaign-help": "Identifikuje kampanju koja vodi ka kreiranju naloga."
+	"campaigns-desc": "Identifikuje kampanju koja vodi do otvaranja naloga",
+	"campaigns-campaign-label": "Kampanja",
+	"campaigns-campaign-help": "Identifikuje kampanju koja vodi do otvaranja naloga."
 }

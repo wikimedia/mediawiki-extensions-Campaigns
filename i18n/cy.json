@@ -1,8 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
+			"Afalau",
 			"Lloffiwr"
 		]
 	},
-	"campaigns-desc": "Yn nodi'r ymgyrch a arweiniodd at agor rhyw gyfrif"
+	"campaigns-desc": "Yn nodi'r ymgyrch a arweiniodd at agor rhyw gyfrif",
+	"campaigns-campaign-label": "Ymgyrchoedd",
+	"campaigns-campaign-help": "Yn nodi'r ymgyrch sy'n arwain at greu cyfrif."
 }

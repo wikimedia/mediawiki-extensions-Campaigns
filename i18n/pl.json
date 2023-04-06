@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Msz2001"
+		]
+	},
+	"campaigns-desc": "Identyfikuje kampanię, która doprowadziła użytkownika do stworzenia konta",
+	"campaigns-campaign-label": "Kampania",
+	"campaigns-campaign-help": "Identyfikuje kampanię, która doprowadziła użytkownika do stworzenia konta."
+}

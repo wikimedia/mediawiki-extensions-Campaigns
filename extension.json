@@ -21,7 +21,12 @@
 		"MediaWiki\\Extension\\Campaigns\\": "includes/"
 	},
 	"Hooks": {
-		"AuthChangeFormFields": "MediaWiki\\Extension\\Campaigns\\Hooks::onAuthChangeFormFields"
+		"AuthChangeFormFields": "main"
+	},
+	"HookHandlers": {
+		"main": {
+			"class": "MediaWiki\\Extension\\Campaigns\\Hooks"
+		}
 	},
 	"attributes": {
 		"EventLogging": {

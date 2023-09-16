@@ -2,9 +2,11 @@
 
 namespace MediaWiki\Extension\Campaigns;
 
-class Hooks {
-	public static function onAuthChangeFormFields(
-		array $requests, array $fieldInfo, array &$formDescriptor, $action
+use MediaWiki\SpecialPage\Hook\AuthChangeFormFieldsHook;
+
+class Hooks implements AuthChangeFormFieldsHook {
+	public function onAuthChangeFormFields(
+		$requests, $fieldInfo, &$formDescriptor, $action
 	) {
 		if ( isset( $formDescriptor['createOrLogin'] ) ) {
 			$formDescriptor['createOrLogin']['linkQuery'] .=

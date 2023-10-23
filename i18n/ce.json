@@ -4,6 +4,7 @@
 			"Умар"
 		]
 	},
-	"campaigns-desc": "Декъашхойн дӀайаздарш кхолла лелош йолу кампанеш билгалйо",
-	"campaigns-campaign-label": "Кампани"
+	"campaigns-desc": "Аккаунташ кхолла лелош йолу кампанеш билгалйо",
+	"campaigns-campaign-label": "Кампани",
+	"campaigns-campaign-help": "Аккаунташ кхолла лелош йолу кампанеш билгалйо"
 }

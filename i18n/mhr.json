@@ -1,8 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"Lifeway"
+			"Lifeway",
+			"Валентина Семёнова"
 		]
 	},
-	"campaigns-campaign-label": "Кампаний"
+	"campaigns-desc": "Аккаунтым ыштымашке вӱдышӧ кампаний-влакым рашемда",
+	"campaigns-campaign-label": "Кампаний",
+	"campaigns-campaign-help": "Аккаунтым ыштымашке вӱдышӧ кампаний-влакым рашемда."
 }

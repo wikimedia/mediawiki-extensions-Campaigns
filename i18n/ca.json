@@ -1,8 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"Gerardduenas"
+			"Gerardduenas",
+			"SMP"
 		]
 	},
-	"campaigns-desc": "Identifica la campanya que ha dut a la creació d'un compte"
+	"campaigns-desc": "Identifica la campanya que ha dut a la creació d'un compte",
+	"campaigns-campaign-label": "Campanya",
+	"campaigns-campaign-help": "Identifica la campanya que condueix a la creació d'un compte."
 }

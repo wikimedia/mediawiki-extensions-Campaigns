@@ -1,0 +1,11 @@
+{
+	"@metadata": {
+		"authors": [
+			"Misosoof",
+			"Pikne"
+		]
+	},
+	"campaigns-desc": "Märgistab konto loomiseni juhtinud kampaania",
+	"campaigns-campaign-label": "Kampaania",
+	"campaigns-campaign-help": "Märgistab kampaania, mis viib konto loomiseni."
+}

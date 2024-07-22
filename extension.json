@@ -39,6 +39,9 @@
 		"secondaryauth": {
 			"CampaignsSecondaryAuthenticationProvider": {
 				"class": "MediaWiki\\Extension\\Campaigns\\CampaignsSecondaryAuthenticationProvider",
+				"services": [
+					"TempUserConfig"
+				],
 				"sort": 0
 			}
 		}

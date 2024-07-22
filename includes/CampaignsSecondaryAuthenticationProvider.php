@@ -8,6 +8,7 @@ use MediaWiki\Auth\AuthenticationRequest;
 use MediaWiki\Auth\AuthenticationResponse;
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Extension\EventLogging\EventLogging;
+use MediaWiki\User\TempUser\TempUserConfig;
 use MobileContext;
 
 /**
@@ -17,17 +18,23 @@ use MobileContext;
 class CampaignsSecondaryAuthenticationProvider
 	extends AbstractSecondaryAuthenticationProvider {
 
+	private TempUserConfig $tempUserConfig;
+
 	/**
-	 * @param array $params
+	 * @param TempUserConfig $tempUserConfig
 	 */
-	public function __construct( $params = [] ) {
+	public function __construct( TempUserConfig $tempUserConfig ) {
+		$this->tempUserConfig = $tempUserConfig;
 	}
 
 	public function getAuthenticationRequests( $action, array $options ) {
 		if ( $action === AuthManager::ACTION_CREATE ) {
+			$useCampaignField = !isset( $options['username'] ) ||
+				( $this->tempUserConfig->isEnabled() && $this->tempUserConfig->isTempName( $options['username'] ) );
+
 			return [ new CampaignsAuthenticationRequest(
 				$this->manager->getRequest(),
-				!isset( $options['username'] )
+				$useCampaignField
 			) ];
 		}
 

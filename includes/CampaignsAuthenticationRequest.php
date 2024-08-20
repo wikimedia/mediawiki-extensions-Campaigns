@@ -9,6 +9,7 @@ use MediaWiki\Request\WebRequest;
  * An authentication request to grab the custom field passed to the creation form.
  */
 class CampaignsAuthenticationRequest extends AuthenticationRequest {
+	/** @var int */
 	public $required = self::OPTIONAL;
 
 	/** @var bool Whether to use the campaign field from the request */

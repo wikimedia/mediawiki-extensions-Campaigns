@@ -2,12 +2,12 @@
 
 namespace MediaWiki\Extension\Campaigns;
 
-use ExtensionRegistry;
 use MediaWiki\Auth\AbstractSecondaryAuthenticationProvider;
 use MediaWiki\Auth\AuthenticationRequest;
 use MediaWiki\Auth\AuthenticationResponse;
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Extension\EventLogging\EventLogging;
+use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\User\TempUser\TempUserConfig;
 use MobileContext;
 

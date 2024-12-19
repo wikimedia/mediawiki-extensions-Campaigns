@@ -27,6 +27,7 @@ class CampaignsSecondaryAuthenticationProvider
 		$this->tempUserConfig = $tempUserConfig;
 	}
 
+	/** @inheritDoc */
 	public function getAuthenticationRequests( $action, array $options ) {
 		if ( $action === AuthManager::ACTION_CREATE ) {
 			$useCampaignField = !isset( $options['username'] ) ||
@@ -41,10 +42,12 @@ class CampaignsSecondaryAuthenticationProvider
 		return [];
 	}
 
+	/** @inheritDoc */
 	public function beginSecondaryAuthentication( $user, array $reqs ) {
 		return AuthenticationResponse::newAbstain();
 	}
 
+	/** @inheritDoc */
 	public function beginSecondaryAccountCreation( $user, $creator, array $reqs ) {
 		$req = AuthenticationRequest::getRequestByClass(
 			$reqs, CampaignsAuthenticationRequest::class

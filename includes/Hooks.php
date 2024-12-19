@@ -5,6 +5,7 @@ namespace MediaWiki\Extension\Campaigns;
 use MediaWiki\SpecialPage\Hook\AuthChangeFormFieldsHook;
 
 class Hooks implements AuthChangeFormFieldsHook {
+	/** @inheritDoc */
 	public function onAuthChangeFormFields(
 		$requests, $fieldInfo, &$formDescriptor, $action
 	) {

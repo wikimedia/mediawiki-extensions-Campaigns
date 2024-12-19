@@ -60,6 +60,7 @@ class CampaignsAuthenticationRequest extends AuthenticationRequest {
 		return [];
 	}
 
+	/** @inheritDoc */
 	public function loadFromSubmission( array $data ) {
 		// We always want to use this request, even if the 'campaign' field got
 		// lost or is invalid, so ignore parent's return value.

@@ -31,7 +31,7 @@
 	"attributes": {
 		"EventLogging": {
 			"Schemas": {
-				"ServerSideAccountCreation": "/analytics/legacy/serversideaccountcreation/1.1.0"
+				"ServerSideAccountCreation": "/analytics/legacy/serversideaccountcreation/1.3.0"
 			}
 		}
 	},

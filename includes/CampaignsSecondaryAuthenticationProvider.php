@@ -6,7 +6,9 @@ use MediaWiki\Auth\AbstractSecondaryAuthenticationProvider;
 use MediaWiki\Auth\AuthenticationRequest;
 use MediaWiki\Auth\AuthenticationResponse;
 use MediaWiki\Auth\AuthManager;
+use MediaWiki\Extension\CentralAuth\SharedDomainUtils;
 use MediaWiki\Extension\EventLogging\EventLogging;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\User\TempUser\TempUserConfig;
 use MobileContext;
@@ -65,6 +67,15 @@ class CampaignsSecondaryAuthenticationProvider
 		$displayMobile = ExtensionRegistry::getInstance()->isLoaded( 'MobileFrontend' ) &&
 			MobileContext::singleton()->shouldDisplayMobileView();
 
+		$sul3Enabled = false;
+		if ( ExtensionRegistry::getInstance()->isLoaded( 'CentralAuth' ) ) {
+			// Check if we're in SUL3 mode or not and notify event schema.
+			/** @var SharedDomainUtils $sharedDomainUtils */
+			$sharedDomainUtils = MediaWikiServices::getInstance()
+				->getService( 'CentralAuth.SharedDomainUtils' );
+			$sul3Enabled = $sharedDomainUtils->isSul3Enabled( $request );
+		}
+
 		$event = [
 			'userId' => $userId,
 			'userName' => $user->getName(),
@@ -75,6 +86,7 @@ class CampaignsSecondaryAuthenticationProvider
 			'token' => '',
 			'userBuckets' => '',
 			'isApi' => defined( 'MW_API' ),
+			'sul3Enabled' => $sul3Enabled,
 		];
 
 		$returnTo = $request->getVal( 'returnto', $req ? $req->returnTo : null );

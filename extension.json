@@ -21,7 +21,8 @@
 		"MediaWiki\\Extension\\Campaigns\\": "includes/"
 	},
 	"Hooks": {
-		"AuthChangeFormFields": "main"
+		"AuthChangeFormFields": "main",
+		"AuthPreserveQueryParams": "main"
 	},
 	"HookHandlers": {
 		"main": {

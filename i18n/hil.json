@@ -1,8 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
+			"Exec8",
 			"Pare Mo"
 		]
 	},
-	"campaigns-campaign-label": "Kampanya"
+	"campaigns-desc": "Nagakilala sang kampanya nga nagadul-ong sa paghimo sang isa ka account",
+	"campaigns-campaign-label": "Kampanya",
+	"campaigns-campaign-help": "Nagakilala sang kampanya nga nagadul-ong sa paghimo sang isa ka account."
 }

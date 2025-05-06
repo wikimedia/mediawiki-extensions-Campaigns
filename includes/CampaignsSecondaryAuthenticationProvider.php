@@ -10,6 +10,7 @@ use MediaWiki\Extension\CentralAuth\SharedDomainUtils;
 use MediaWiki\Extension\EventLogging\EventLogging;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Registration\ExtensionRegistry;
+use MediaWiki\Session\SessionManager;
 use MediaWiki\User\TempUser\TempUserConfig;
 use MobileContext;
 
@@ -76,6 +77,16 @@ class CampaignsSecondaryAuthenticationProvider
 			$sul3Enabled = $sharedDomainUtils->isSul3Enabled( $request );
 		}
 
+		// Default of -1 for wikis which don't have hCaptcha loaded
+		$hCaptchaScore = -1;
+		if ( ExtensionRegistry::getInstance()->isLoaded( 'hCaptcha' ) ) {
+			// get() may return null if no score was returned by the hCaptcha api, or otherwise not inserted
+			// on the ConfirmEdit side.
+			// Make sure we still default to using -1 as value outside range potentially returned by
+			// hCaptcha (0.00-1.00), and something that would be acceptable to the event schema.
+			$hCaptchaScore = SessionManager::getGlobalSession()->get( 'hCaptcha-score', -1 );
+		}
+
 		$event = [
 			'userId' => $userId,
 			'userName' => $user->getName(),
@@ -87,6 +98,7 @@ class CampaignsSecondaryAuthenticationProvider
 			'userBuckets' => '',
 			'isApi' => defined( 'MW_API' ),
 			'sul3Enabled' => $sul3Enabled,
+			'hCaptchaScore' => $hCaptchaScore,
 		];
 
 		$returnTo = $request->getVal( 'returnto', $req ? $req->returnTo : null );

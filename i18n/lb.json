@@ -1,9 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
-			"Robby"
+			"Robby",
+			"Volvox"
 		]
 	},
-	"campaigns-desc": "Identifizéiert d'Campagnen déi zum Uleeë vu Benotzerkonte féieren",
+	"campaigns-desc": "Identifizéiert d'Campagne, déi zum Uleeë vun engem Benotzerkont gefouert huet",
 	"campaigns-campaign-label": "Campagne"
 }

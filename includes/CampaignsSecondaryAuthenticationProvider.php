@@ -21,13 +21,7 @@ use MobileContext;
 class CampaignsSecondaryAuthenticationProvider
 	extends AbstractSecondaryAuthenticationProvider {
 
-	private TempUserConfig $tempUserConfig;
-
-	/**
-	 * @param TempUserConfig $tempUserConfig
-	 */
-	public function __construct( TempUserConfig $tempUserConfig ) {
-		$this->tempUserConfig = $tempUserConfig;
+	public function __construct( private readonly TempUserConfig $tempUserConfig ) {
 	}
 
 	/** @inheritDoc */

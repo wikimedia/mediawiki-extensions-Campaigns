@@ -1,9 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"Luky001"
+			"Luky001",
+			"Wizzard"
 		]
 	},
 	"campaigns-desc": "Identifikuje kampaň, ktorá viedla k vytvoreniu účtu",
+	"campaigns-campaign-label": "Kampaň",
 	"campaigns-campaign-help": "Identifikuje kampaň, ktorá viedla k vytvoreniu účtu."
 }

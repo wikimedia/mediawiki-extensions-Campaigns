@@ -1,8 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"Tacsipacsi"
+			"Tacsipacsi",
+			"Dj"
 		]
 	},
-	"campaigns-campaign-label": "Kampány"
+	"campaigns-desc": "Azonosítja a fiók létrehozásához vezető kampányt.",
+	"campaigns-campaign-label": "Kampány",
+	"campaigns-campaign-help": "Azonosítja a fiók létrehozásához vezető kampányt."
 }

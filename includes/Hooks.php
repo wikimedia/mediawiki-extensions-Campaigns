@@ -14,9 +14,15 @@ class Hooks implements
 	public function onAuthChangeFormFields(
 		$requests, $fieldInfo, &$formDescriptor, $action
 	) {
-		if ( isset( $formDescriptor['createOrLogin'] ) ) {
-			$formDescriptor['createOrLogin']['linkQuery'] .=
-				( $formDescriptor['createOrLogin']['linkQuery'] ? '&' : '' ) . 'campaign=loginCTA';
+		if ( isset( $formDescriptor['createOrLogin']['linkQuery'] ) ) {
+			$linkQuery = $formDescriptor['createOrLogin']['linkQuery'] ?? '';
+			// check for string campaign=* (do not match x-campaign=*) [T436681]
+			$hasCampaign = strpos( $linkQuery, 'campaign=' ) === 0 ||
+				strpos( $linkQuery, '&campaign=' ) !== false;
+			if ( !$hasCampaign ) {
+				$formDescriptor['createOrLogin']['linkQuery'] .=
+					( $linkQuery !== '' ? '&' : '' ) . 'campaign=loginCTA';
+			}
 		}
 	}
 

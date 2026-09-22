@@ -8,7 +8,6 @@ use MediaWiki\Auth\AuthenticationResponse;
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Extension\CentralAuth\SharedDomainUtils;
 use MediaWiki\Extension\EventLogging\EventLogging;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\Session\SessionManager;
 use MediaWiki\User\TempUser\TempUserConfig;
@@ -21,7 +20,12 @@ use MobileContext;
 class CampaignsSecondaryAuthenticationProvider
 	extends AbstractSecondaryAuthenticationProvider {
 
-	public function __construct( private readonly TempUserConfig $tempUserConfig ) {
+	public function __construct(
+		private readonly TempUserConfig $tempUserConfig,
+		private readonly ExtensionRegistry $extensionRegistry,
+		private readonly ?SharedDomainUtils $sharedDomainUtils,
+		private readonly ?MobileContext $mobileContext,
+	) {
 	}
 
 	/** @inheritDoc */
@@ -59,21 +63,18 @@ class CampaignsSecondaryAuthenticationProvider
 		// the ID of the user making this web request are different.
 		$isSelfMade = ( $userId && $userId === $creatorUserId ) || !$creatorUserId;
 
-		$displayMobile = ExtensionRegistry::getInstance()->isLoaded( 'MobileFrontend' ) &&
-			MobileContext::singleton()->shouldDisplayMobileView();
+		$displayMobile = $this->mobileContext !== null
+			? $this->mobileContext->shouldDisplayMobileView()
+			: false;
 
-		$sul3Enabled = false;
-		if ( ExtensionRegistry::getInstance()->isLoaded( 'CentralAuth' ) ) {
-			// Check if we're in SUL3 mode or not and notify event schema.
-			/** @var SharedDomainUtils $sharedDomainUtils */
-			$sharedDomainUtils = MediaWikiServices::getInstance()
-				->getService( 'CentralAuth.SharedDomainUtils' );
-			$sul3Enabled = $sharedDomainUtils->isSul3Enabled( $request );
-		}
+		// Check if we're in SUL3 mode or not and notify event schema.
+		$sul3Enabled = $this->sharedDomainUtils !== null
+			? $this->sharedDomainUtils->isSul3Enabled( $request )
+			: false;
 
 		// Default of -1 for wikis which don't have hCaptcha loaded
 		$hCaptchaScore = -1;
-		if ( ExtensionRegistry::getInstance()->isLoaded( 'hCaptcha' ) ) {
+		if ( $this->extensionRegistry->isLoaded( 'hCaptcha' ) ) {
 			// get() may return null if no score was returned by the hCaptcha api, or otherwise not inserted
 			// on the ConfirmEdit side.
 			// Make sure we still default to using -1 as value outside range potentially returned by

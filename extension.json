@@ -41,7 +41,12 @@
 			"CampaignsSecondaryAuthenticationProvider": {
 				"class": "MediaWiki\\Extension\\Campaigns\\CampaignsSecondaryAuthenticationProvider",
 				"services": [
-					"TempUserConfig"
+					"TempUserConfig",
+					"ExtensionRegistry"
+				],
+				"optional_services": [
+					"CentralAuth.SharedDomainUtils",
+					"MobileFrontend.Context"
 				],
 				"sort": 0
 			}

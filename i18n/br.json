@@ -1,8 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
+			"Ar choler",
 			"Huñvreüs"
 		]
 	},
-	"campaigns-campaign-label": "Koulzad"
+	"campaigns-desc": "Anavezout a ra ar c'houlzad a gas da grouiñ ur gont",
+	"campaigns-campaign-label": "Koulzad",
+	"campaigns-campaign-help": "Anavezout a ra ar c'houlzad a gas da grouiñ ur gont."
 }
